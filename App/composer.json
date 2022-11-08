@@ -1,5 +1,4 @@
-{ "name": "iutnc/tweeter-app",
-  "description": "Encore mieur que l'original",
+{ "name": "iutnc/tuc-app",
   "type": "project",
   
   "autoload": {
