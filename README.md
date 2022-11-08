@@ -1,3 +1,3 @@
 "# AtelierTUC" 
 
-"On a rien a caché... sauf nos talents" ~ Ugo Zanzi
+"On a rien à caché... sauf nos talents" ~ Ugo Zanzi
