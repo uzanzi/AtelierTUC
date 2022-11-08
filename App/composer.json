@@ -1,0 +1,15 @@
+{ "name": "iutnc/tweeter-app",
+  "description": "Encore mieur que l'original",
+  "type": "project",
+  
+  "autoload": {
+      "psr-4": {
+          "iutnc\\" : "./src/classes"
+      }
+  },
+  
+  "require": {
+      "illuminate/database": "*",
+      "phpunit/phpunit": "*"
+  }
+}
