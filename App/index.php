@@ -16,17 +16,26 @@ $db->addConnection( $config ); /* configuration avec nos paramètres */
 $db->setAsGlobal();            /* rendre la connexion visible dans tout le projet */
 $db->bootEloquent();           /* établir la connexion */
 
-// $router = new \iutnc\mf\router\Router();
+$router = new \iutnc\mf\router\Router();
 
-// $router->addRoute('home', 'list_tweets', '\iutnc\tweeterapp\control\HomeController');
-// $router->addRoute('view', 'view_tweet', '\iutnc\tweeterapp\control\TweetController');
-// $router->addRoute('user', 'view_user_tweets', '\iutnc\tweeterapp\control\UserController');
-// $router->addRoute('post', 'post_tweet', '\iutnc\tweeterapp\control\PostController', 100);
-// $router->addRoute('signup', 'sign_up', '\iutnc\tweeterapp\control\SignupController');
-// $router->addRoute('profil', 'view_profil', '\iutnc\tweeterapp\control\FollowingController', 100);
-// $router->addRoute('login', 'log_in', '\iutnc\tweeterapp\control\LoginController');
-// $router->addRoute('logout', 'log_out', '\iutnc\tweeterapp\control\LogoutController');
+$router->addRoute('accueil', 'presenter_galeries', '\iutnc\tweeterapp\control\AccueilController');
+$router->addRoute('list_galerie', 'lister_galeries', '\iutnc\tweeterapp\control\ListeGaleriesController');
+$router->addRoute('galerie', 'afficher_galerie', '\iutnc\tweeterapp\control\GalerieController');
+$router->addRoute('ajout_galerie', 'ajouter_galerie', '\iutnc\tweeterapp\control\AjouterGalerieController');
+$router->addRoute('suppression_galerie', 'supprimer_galerie', '\iutnc\tweeterapp\control\SupprimerGalerieController');
+$router->addRoute('photo', 'afficher_photo', '\iutnc\tweeterapp\control\PhotoController');
+$router->addRoute('ajout_photo', 'ajouter_photo', '\iutnc\tweeterapp\control\AjouterPhotoController');
+$router->addRoute('suppression_photo', 'supprimer_photo', '\iutnc\tweeterapp\control\SupprimerPhotoController');
+$router->addRoute('connexion', 'se_connecter', '\iutnc\tweeterapp\control\SeConnecterController');
+$router->addRoute('inscription', 's_inscrire', '\iutnc\tweeterapp\control\SInscrireController');
+$router->addRoute('deconnexion', 'se_deconnecter', '\iutnc\tweeterapp\control\SeDeconnecterController');
+$router->addRoute('ajout_mot_clef_sur_photo', 'ajouter_mot_clef_sur_photo', '\iutnc\tweeterapp\control\AjouterMotClefSurPhotoController');
+$router->addRoute('suppression_mot_clef_sur_photo', 'supprimer_mot_clef_sur_photo', '\iutnc\tweeterapp\control\SupprimerMotClefSurPhotoController');
+$router->addRoute('ajout_mot_clef_sur_galerie', 'ajouter_mot_clef_sur_galerie', '\iutnc\tweeterapp\control\AjouterMotClefSurGalerieController');
+$router->addRoute('suppression_mot_clef_sur_galerie', 'supprimer_mot_clef_sur_galerie', '\iutnc\tweeterapp\control\SupprimerMotClefSurGalerieController');
 
-// $router->setDefaultRoute('list_tweets');
 
-// $router->run();
+
+$router->setDefaultRoute('accueil');
+
+$router->run();
