@@ -5,9 +5,9 @@ namespace iutnc\tucapp\model;
 
 class Photos extends \Illuminate\Database\Eloquent\Model
 {
-  protected string $table = 'photos';
-  protected string $primaryKey = 'id';
-  public bool $timestamps = false;
+  protected $table = 'photos';
+  protected $primaryKey = 'id';
+  public $timestamps = false;
 
   public function galeries(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
   {
