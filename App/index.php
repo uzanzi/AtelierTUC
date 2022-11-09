@@ -1,11 +1,9 @@
 <?php
-
 session_start();
 
 ini_set('display_errors', '1');
 
 error_reporting(E_ALL);
-
 
 require_once 'vendor/autoload.php';
 
@@ -18,9 +16,7 @@ $db->addConnection( $config ); /* configuration avec nos paramètres */
 $db->setAsGlobal();            /* rendre la connexion visible dans tout le projet */
 $db->bootEloquent();           /* établir la connexion */
 
-
-
-$router = new \iutnc\mf\router\Router();
+// $router = new \iutnc\mf\router\Router();
 
 // $router->addRoute('home', 'list_tweets', '\iutnc\tweeterapp\control\HomeController');
 // $router->addRoute('view', 'view_tweet', '\iutnc\tweeterapp\control\TweetController');
@@ -33,7 +29,4 @@ $router = new \iutnc\mf\router\Router();
 
 // $router->setDefaultRoute('list_tweets');
 
-$router->run();
-
-
-
+// $router->run();
