@@ -29,10 +29,10 @@ $router->addRoute('suppression_photo', 'supprimer_photo', '\iutnc\tweeterapp\con
 $router->addRoute('connexion', 'se_connecter', '\iutnc\tweeterapp\control\SeConnecterController');
 $router->addRoute('inscription', 's_inscrire', '\iutnc\tweeterapp\control\SInscrireController');
 $router->addRoute('deconnexion', 'se_deconnecter', '\iutnc\tweeterapp\control\SeDeconnecterController');
-$router->addRoute('ajout_mot_clef_sur_photo', 'ajouter_mot_clef_sur_photo', '\iutnc\tweeterapp\control\AjouterMotClefSurGalerieController');
-$router->addRoute('suppression_mot_clef_sur_photo', 'supprimer_mot_clef_sur_photo', '\iutnc\tweeterapp\control\AjouterMotClefSurPhotoController');
-$router->addRoute('ajout_mot_clef_sur_galerie', 'ajouter_mot_clef_sur_galerie', '\iutnc\tweeterapp\control\SupprimerMotClefSurGalerieController');
-$router->addRoute('suppression_mot_clef_sur_galerie', 'supprimer_mot_clef_sur_galerie', '\iutnc\tweeterapp\control\SupprimerMotClefSurPhotoController');
+$router->addRoute('ajout_mot_clef_sur_photo', 'ajouter_mot_clef_sur_photo', '\iutnc\tweeterapp\control\AjouterMotClefSurPhotoController');
+$router->addRoute('suppression_mot_clef_sur_photo', 'supprimer_mot_clef_sur_photo', '\iutnc\tweeterapp\control\SupprimerMotClefSurPhotoController');
+$router->addRoute('ajout_mot_clef_sur_galerie', 'ajouter_mot_clef_sur_galerie', '\iutnc\tweeterapp\control\AjouterMotClefSurGalerieController');
+$router->addRoute('suppression_mot_clef_sur_galerie', 'supprimer_mot_clef_sur_galerie', '\iutnc\tweeterapp\control\SupprimerMotClefSurGalerieController');
 
 
 
