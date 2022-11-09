@@ -4,7 +4,7 @@ namespace iutnc\tucapp\auth;
 
 use Exception;
 use iutnc\mf\auth\AbstractAuthentification;
-use iutnc\tweeterapp\model\User;
+use iutnc\tucapp\model\Utilisateurs;
 
 class TucAuthentification extends AbstractAuthentification
 {
@@ -39,10 +39,10 @@ class TucAuthentification extends AbstractAuthentification
     *
     */
 
-    if(User::select()->where('mail', '=', $mail)->first()){
+    if(Utilisateurs::select()->where('mail', '=', $mail)->first()){
       throw new Exception("Un compte est déjà associé à cette adresse mail", 1);
     } else {
-      $newUser = new User;
+      $newUser = new Utilisateurs;
       $newUser->nom=$nom;
       $newUser->prenom=$prenom;
       $newUser->mail=$mail;
@@ -75,7 +75,7 @@ class TucAuthentification extends AbstractAuthentification
      *
      */
 
-     $user = User::select()->where('mail', '=', $mail)->first();
+     $user = Utilisateurs::select()->where('mail', '=', $mail)->first();
 
         if ($user) {
           AbstractAuthentification::checkPassword($mot_de_passe, $user->mot_de_passe, $user->id);
