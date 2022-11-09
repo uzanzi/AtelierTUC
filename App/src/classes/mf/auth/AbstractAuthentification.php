@@ -12,7 +12,7 @@ abstract class AbstractAuthentification {
     /* la taill minimum des mot de pass */
     const MIN_PASSWORD_LENGTH = 6;
       
-    protected static function loadProfile(int $id, int $level): void{
+    protected static function loadProfile(int $id): void{
         /* 
          * La méthode loadProfile : 
          *
@@ -28,7 +28,6 @@ abstract class AbstractAuthentification {
          */
 
         $_SESSION['user_profile']['id'] = $id;
-        $_SESSION['user_profile']['access_level'] = $level;
     }
         
      
@@ -59,56 +58,6 @@ abstract class AbstractAuthentification {
         if ( isset($_SESSION['user_profile']['id'] ))
             return $_SESSION['user_profile']['id'];
         return null;
-    }
-
-    
-    public static function checkAccessRight(int $requested): bool{
-        
-        /* 
-         * La méthode checkAccessRight:
-         * 
-         * Méthode pour verifier le niveau d'accès de l'utilisateur.
-         * Elle est à utiliser avant chaque accès à une fonctionnalité
-         *
-         * Paramètres:
-         *
-         *    $requested, le niveau requis pour la fonctionnalité
-         *
-         * Retourne
-         *    vrai si le niveaux requis est inférieur ou égale à la 
-         *    valeur du niveau de l'utilisateur (stocké en profil)
-         * 
-         * Algorithme :
-         * 
-         * S'il y a un profile en session
-         *     Si $requested > le niveau du profil  
-         *         Retourner faux
-         *     Sinon 
-         *         Retourner vrai
-         * Sinon 
-         *     Si $requested > self::ACCESS_LEVEL_NONE
-         *         Retourner faux
-         *     Sinon 
-         *         Retourner vrai
-         */
-
-         if ($_SESSION['user_profile']) {
-
-          if ($requested > $_SESSION['user_profile']['access_level']) {
-            return false;
-          } else {
-            return true;
-          }
-
-         } else {
-          if ($requested > self::ACCESS_LEVEL_NONE) {
-            return false;
-          } else {
-            return true;
-          }
-         }
-         
-        
     }
 
 
@@ -148,8 +97,7 @@ abstract class AbstractAuthentification {
     
     protected static function checkPassword(string $given_pass,
                                             string $db_hash,
-                                            int $id,
-                                            int $level):void{
+                                            int $id):void{
 
 
         /* 
@@ -176,7 +124,7 @@ abstract class AbstractAuthentification {
           throw new Exception("Identifiant ou mot de passe incorrect", 1);
          }
          
-        self::loadProfile($id, $level);
+        self::loadProfile($id);
         
     }
 

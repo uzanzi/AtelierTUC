@@ -1,23 +1,21 @@
 <?php
 
-namespace iutnc\tweeterapp\auth;
+namespace iutnc\tucapp\auth;
 
 use Exception;
 use iutnc\mf\auth\AbstractAuthentification;
-use iutnc\mf\router\Router;
-use iutnc\mf\utils\HttpRequest;
 use iutnc\tweeterapp\model\User;
 
-class TweeterAuthentification extends AbstractAuthentification
+class TucAuthentification extends AbstractAuthentification
 {
   const ACCESS_LEVEL_USER = 100;
   const ACCESS_LEVEL_ADMIN = 100;
 
 
-  public static function register(string $username,
-                                  string $password,
-                                  string $fullname,
-                                  $level=self::ACCESS_LEVEL_USER): void {
+  public static function register(string $prenom,
+                                  string $nom,
+                                  string $mail,
+                                  string $mot_de_passe): void {
 
 
   /* La méthode register
@@ -41,20 +39,20 @@ class TweeterAuthentification extends AbstractAuthentification
     *
     */
 
-    if(User::select()->where('username', '=', $username)->first()){
-      throw new Exception("Pseudo déjà utilisé", 1);
+    if(User::select()->where('mail', '=', $mail)->first()){
+      throw new Exception("Un compte est déjà associé à cette adresse mail", 1);
     } else {
       $newUser = new User;
-      $newUser->username=$username;
-      $newUser->password= self::makePassword($password);
-      $newUser->fullname=$fullname;
-      $newUser->level=$level;
+      $newUser->nom=$nom;
+      $newUser->prenom=$prenom;
+      $newUser->mail=$mail;
+      $newUser->mot_de_passe= self::makePassword($mot_de_passe);
       $newUser->save();
     }
   }
 
 
-  public static function login(string $username, string $password): void {
+  public static function login(string $mail, string $mot_de_passe): void {
 
     /* La méthode login
      *
@@ -77,10 +75,10 @@ class TweeterAuthentification extends AbstractAuthentification
      *
      */
 
-     $user = User::select()->where('username', '=', $username)->first();
+     $user = User::select()->where('mail', '=', $mail)->first();
 
         if ($user) {
-          AbstractAuthentification::checkPassword($password, $user->password, $user->id, $user->level);
+          AbstractAuthentification::checkPassword($mot_de_passe, $user->mot_de_passe, $user->id);
         } else {
           throw new Exception("Identifiant ou mot de passe incorrect", 1);
         }
