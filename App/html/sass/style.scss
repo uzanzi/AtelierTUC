@@ -1,0 +1,7 @@
+$main-color : #7b3;
+
+body > footer{
+  background-color: darken($main-color, 15);
+  color: #fff;
+  padding: 2rem;
+}
