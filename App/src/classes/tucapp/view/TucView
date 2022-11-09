@@ -7,7 +7,7 @@ use iutnc\mf\view\AbstractView;
 use iutnc\mf\view\Renderer;
 use iutnc\tucapp\auth\TucAuthentification;
 
-class TweeterView extends AbstractView implements Renderer{
+class TucView extends AbstractView implements Renderer{
 
   public function render(): string {
     return '';
