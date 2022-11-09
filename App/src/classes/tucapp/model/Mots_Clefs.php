@@ -5,9 +5,9 @@ namespace iutnc\tucapp\model;
 
 class Mots_Clefs extends \Illuminate\Database\Eloquent\Model
 {
-  protected string $table = 'mots_clefs';
-  protected string $primaryKey = 'mot_clef';
-  public bool $timestamps = false;
+  protected $table = 'mots_clefs';
+  protected $primaryKey = 'mot_clef';
+  public $timestamps = false;
 
   public function photos(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
   {
