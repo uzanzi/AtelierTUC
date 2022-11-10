@@ -5,9 +5,9 @@ namespace iutnc\tucapp\model;
 
 class Utilisateurs extends \Illuminate\Database\Eloquent\Model
 {
-  protected string $table = 'utilisateurs';
-  protected string $primaryKey = 'id';
-  public bool $timestamps = false;
+  protected $table = 'utilisateurs';
+  protected $primaryKey = 'id';
+  public $timestamps = false;
 
   public function galeries(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
   {

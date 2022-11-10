@@ -143,7 +143,7 @@ abstract class AbstractView {
         $app_root = $this->request->root;
         $styles = '';
         foreach ( self::$style_sheets as $file )
-            $styles .= '<link rel="stylesheet" href="'.$app_root.'/'.$file.'"> ';
+            $styles .= '<link rel="stylesheet" href="/'.$file.'"> ';
 
         /* Appeler la méthode makeBody de la sous-classe */
 
