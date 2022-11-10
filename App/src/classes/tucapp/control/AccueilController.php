@@ -19,15 +19,15 @@ class AccueilController extends AbstractController
 
       $utilisateur = Utilisateurs::select()->where('id', '=', TucAuthentification::connectedUser())->first();
 
-      $galeriesPrivees = $utilisateur->galeries()->where('niveauAcces', '=', 100)->get();
+      $galeriesPrivees = $utilisateur->galeries()->where('niveauAcces', '=', 100)->limit(12)->get();
       $data['galeriesPrivees']=$galeriesPrivees;
 
-      $galeriesPartagees = $utilisateur->galeries()->where('niveauAcces', '<', 100)->get();
+      $galeriesPartagees = $utilisateur->galeries()->where('niveauAcces', '<', 100)->limit(12)->get();
       $data['galeriesPartagees']=$galeriesPartagees;
 
     }
 
-    $galeriesPubliques = Galeries::select()->where('acces', '=', 1)->get();
+    $galeriesPubliques = Galeries::select()->where('acces', '=', 1)->limit(12)->get();
     $data['galeriesPubliques']=$galeriesPubliques;
 
     $render = new AccueilView($data);

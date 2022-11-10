@@ -12,6 +12,10 @@ class AccueilView extends TucView
     $galeriesPubliques=$this->data['galeriesPubliques'];
 
     $router = new Router;
+
+    $urlGaleriesPubliques= $router->urlFor('lister_galeries', ['acces' => 'publiques']);
+    $urlGaleriesPrivees= $router->urlFor('lister_galeries', ['acces' => 'privees']);
+    $urlGaleriesPartagees= $router->urlFor('lister_galeries', ['acces' => 'partagees']);
     
     $html = "<div class=\"accueil\">";
 
@@ -23,7 +27,7 @@ class AccueilView extends TucView
       $html.= "
         <section id=\"galeriesPrivees\">
           <header>
-            <h2>Vos galeries</h2>
+            <h2><a href=\"$urlGaleriesPubliques\">Vos galeries</a></h2>
           </header>
           <main>
           ";
@@ -54,7 +58,7 @@ class AccueilView extends TucView
       $html.= "
         <section id=\"galeriesPartagees\">
           <header>
-            <h2>Galeries partagées avec vous</h2>
+            <h2><a href=\"$urlGaleriesPrivees\">Galeries partagées avec vous</a></h2>
           </header>
           <main>
           ";
@@ -87,7 +91,7 @@ class AccueilView extends TucView
     $html.= "
     <section id=\"galeriesPubliques\">
       <header>
-        <h2>Galeries publiques</h2>
+        <h2><a href=\"$urlGaleriesPartagees\">Galeries publiques</a></h2>
       </header>
       <main>
       ";
