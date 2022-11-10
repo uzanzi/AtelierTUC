@@ -37,4 +37,7 @@ $router->addRoute('suppression_mot_clef_sur_galerie', 'supprimer_mot_clef_sur_ga
 
 $router->setDefaultRoute('presenter_galeries');
 
+
 $router->run();
+
+
