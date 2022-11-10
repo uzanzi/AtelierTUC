@@ -7,7 +7,7 @@ class SInscrireView extends TucView
   public function render(): string {
 
     $html = "
-    <form action=\"?action=sign_up\" method=\"post\">
+    <form action=\"?action=s_inscrire\" method=\"post\">
       <input type=\"text\" name=\"prenom\" placeholder=\"Votre prénom\" autocomplete=\"off\">
       <input type=\"text\" name=\"nom\" placeholder=\"Votre nom\" autocomplete=\"off\">
       <input type=\"text\" name=\"mail\" placeholder=\"votre@mail.com\" autocomplete=\"off\">
