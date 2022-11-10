@@ -1,8 +1,6 @@
 <?php
 
-
 namespace iutnc\tucapp\control;
-
 
 use iutnc\mf\control\AbstractController;
 use iutnc\tucapp\model\Photos;

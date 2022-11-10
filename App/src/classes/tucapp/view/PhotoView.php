@@ -1,8 +1,6 @@
 <?php
 
-
 namespace iutnc\tucapp\view;
-
 
 class PhotoView extends TucView
 {
