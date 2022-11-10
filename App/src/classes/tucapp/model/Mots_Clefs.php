@@ -7,6 +7,7 @@ class Mots_Clefs extends \Illuminate\Database\Eloquent\Model
 {
   protected string $table = 'mots_clefs';
   protected string $primaryKey = 'mot_clef';
+  public $incrementing = false;
   public bool $timestamps = false;
 
   public function photos(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

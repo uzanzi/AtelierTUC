@@ -1,12 +1,12 @@
 <?php
 
 
-namespace iutnc\tweeterapp\control;
+namespace iutnc\tucapp\control;
 
 
 use iutnc\mf\control\AbstractController;
 use iutnc\tucapp\model\Photos;
-use iutnc\tweeterapp\view\PhotoView;
+use iutnc\tucapp\view\PhotoView;
 
 class PhotoController extends AbstractController
 {
@@ -18,7 +18,7 @@ class PhotoController extends AbstractController
       $photo = Photos::select()->where("id", "=", $idPhoto)->first();
       $photoView = new PhotoView($photo);
       $photoView->setAppTitle($photo->titre);
-      $photoView->addStyleSheet('html/style.css');
+      $photoView->addStyleSheet('html/css/style.css');
       $photoView->makePage();
     }
   }

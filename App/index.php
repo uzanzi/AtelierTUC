@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 ini_set('display_errors', '1');
@@ -18,23 +19,21 @@ $db->bootEloquent();           /* établir la connexion */
 
 $router = new \iutnc\mf\router\Router();
 
-$router->addRoute('accueil', 'presenter_galeries', '\iutnc\tweeterapp\control\AccueilController');
-$router->addRoute('list_galerie', 'lister_galeries', '\iutnc\tweeterapp\control\ListeGaleriesController');
-$router->addRoute('galerie', 'afficher_galerie', '\iutnc\tweeterapp\control\GalerieController');
-$router->addRoute('ajout_galerie', 'ajouter_galerie', '\iutnc\tweeterapp\control\AjouterGalerieController');
-$router->addRoute('suppression_galerie', 'supprimer_galerie', '\iutnc\tweeterapp\control\SupprimerGalerieController');
-$router->addRoute('photo', 'afficher_photo', '\iutnc\tweeterapp\control\PhotoController');
-$router->addRoute('ajout_photo', 'ajouter_photo', '\iutnc\tweeterapp\control\AjouterPhotoController');
-$router->addRoute('suppression_photo', 'supprimer_photo', '\iutnc\tweeterapp\control\SupprimerPhotoController');
-$router->addRoute('connexion', 'se_connecter', '\iutnc\tweeterapp\control\SeConnecterController');
-$router->addRoute('inscription', 's_inscrire', '\iutnc\tweeterapp\control\SInscrireController');
-$router->addRoute('deconnexion', 'se_deconnecter', '\iutnc\tweeterapp\control\SeDeconnecterController');
-$router->addRoute('ajout_mot_clef_sur_photo', 'ajouter_mot_clef_sur_photo', '\iutnc\tweeterapp\control\AjouterMotClefSurPhotoController');
-$router->addRoute('suppression_mot_clef_sur_photo', 'supprimer_mot_clef_sur_photo', '\iutnc\tweeterapp\control\SupprimerMotClefSurPhotoController');
-$router->addRoute('ajout_mot_clef_sur_galerie', 'ajouter_mot_clef_sur_galerie', '\iutnc\tweeterapp\control\AjouterMotClefSurGalerieController');
-$router->addRoute('suppression_mot_clef_sur_galerie', 'supprimer_mot_clef_sur_galerie', '\iutnc\tweeterapp\control\SupprimerMotClefSurGalerieController');
-
-
+$router->addRoute('accueil', 'presenter_galeries', '\iutnc\tucapp\control\AccueilController');
+$router->addRoute('list_galerie', 'lister_galeries', '\iutnc\tucapp\control\ListeGaleriesController');
+$router->addRoute('galerie', 'afficher_galerie', '\iutnc\tucapp\control\GalerieController');
+$router->addRoute('ajout_galerie', 'ajouter_galerie', '\iutnc\tucapp\control\AjouterGalerieController');
+$router->addRoute('suppression_galerie', 'supprimer_galerie', '\iutnc\tucapp\control\SupprimerGalerieController');
+$router->addRoute('photo', 'afficher_photo', '\iutnc\tucapp\control\PhotoController');
+$router->addRoute('ajout_photo', 'ajouter_photo', '\iutnc\tucapp\control\AjouterPhotoController');
+$router->addRoute('suppression_photo', 'supprimer_photo', '\iutnc\tucapp\control\SupprimerPhotoController');
+$router->addRoute('connexion', 'se_connecter', '\iutnc\tucapp\control\SeConnecterController');
+$router->addRoute('inscription', 's_inscrire', '\iutnc\tucapp\control\SInscrireController');
+$router->addRoute('deconnexion', 'se_deconnecter', '\iutnc\tucapp\control\SeDeconnecterController');
+$router->addRoute('ajout_mot_clef_sur_photo', 'ajouter_mot_clef_sur_photo', '\iutnc\tucapp\control\AjouterMotClefSurPhotoController');
+$router->addRoute('suppression_mot_clef_sur_photo', 'supprimer_mot_clef_sur_photo', '\iutnc\tucapp\control\SupprimerMotClefSurPhotoController');
+$router->addRoute('ajout_mot_clef_sur_galerie', 'ajouter_mot_clef_sur_galerie', '\iutnc\tucapp\control\AjouterMotClefSurGalerieController');
+$router->addRoute('suppression_mot_clef_sur_galerie', 'supprimer_mot_clef_sur_galerie', '\iutnc\tucapp\control\SupprimerMotClefSurGalerieController');
 
 $router->setDefaultRoute('accueil');
 
