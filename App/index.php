@@ -1,7 +1,5 @@
 <?php
 
-use iutnc\tucapp\model\Utilisateurs;
-
 session_start();
 
 ini_set('display_errors', '1');
@@ -37,8 +35,9 @@ $router->addRoute('suppression_mot_clef_sur_photo', 'supprimer_mot_clef_sur_phot
 $router->addRoute('ajout_mot_clef_sur_galerie', 'ajouter_mot_clef_sur_galerie', '\iutnc\tucapp\control\AjouterMotClefSurGalerieController');
 $router->addRoute('suppression_mot_clef_sur_galerie', 'supprimer_mot_clef_sur_galerie', '\iutnc\tucapp\control\SupprimerMotClefSurGalerieController');
 
-
-
 $router->setDefaultRoute('presenter_galeries');
 
+
 $router->run();
+
+
