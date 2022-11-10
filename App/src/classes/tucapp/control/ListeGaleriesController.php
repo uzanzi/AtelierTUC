@@ -17,9 +17,19 @@ class ListeGaleriesController extends AbstractController
 
     $requeteHttp = new HttpRequest;
 
+    if (isset($requeteHttp->get['page'])) {
+      $page = $requeteHttp->get['page'];
+    } else {
+      $page = 1;
+    }
+
+    $nbItemParPage=36;
+    
+    $offset = $nbItemParPage * ($page-1);
+
     if (isset($requeteHttp->get['acces']) && $requeteHttp->get['acces']=='publiques') {
       
-      $galeries = Galeries::select()->where('acces', '=', 1)->get();
+      $galeries = Galeries::select()->where('acces', '=', 1)->offset($offset)->limit($nbItemParPage)->get();
   
       AbstractView::setAppTitle('TUC Galeries');
       AbstractView::addStyleSheet('html/css/style.css');
@@ -32,7 +42,7 @@ class ListeGaleriesController extends AbstractController
       if (TucAuthentification::connectedUser()) {
 
         $user = Utilisateurs::select()->where('id', '=', TucAuthentification::connectedUser())->first();
-        $galeries = $user->galeries()->where('niveauAcces', '<', 100)->get();
+        $galeries = $user->galeries()->where('niveauAcces', '<', 100)->offset($offset)->limit($nbItemParPage)->get();
   
         AbstractView::setAppTitle('TUC Galeries');
         AbstractView::addStyleSheet('html/css/style.css');
@@ -48,7 +58,7 @@ class ListeGaleriesController extends AbstractController
       if (TucAuthentification::connectedUser()) {
 
         $user = Utilisateurs::select()->where('id', '=', TucAuthentification::connectedUser())->first();
-        $galeries = $user->galeries()->where('niveauAcces', '=', 100)->get();
+        $galeries = $user->galeries()->where('niveauAcces', '=', 100)->offset($offset)->limit($nbItemParPage)->get();
   
         AbstractView::setAppTitle('TUC Galeries');
         AbstractView::addStyleSheet('html/css/style.css');
