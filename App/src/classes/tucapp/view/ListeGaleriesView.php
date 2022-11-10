@@ -40,10 +40,12 @@ class ListeGaleriesView extends TucView {
       
       $urlGalerie = $router->urlFor('afficher_galerie', ['id'=>$galerie->id]);
 
+      $photo = $galerie->photos()->first();
+
       $html .= "
       <article class=\"galerie\">
         <a class=\"contenu_tweet\" href=\"$urlGalerie\">
-          <img src=\"https://picsum.photos/200/300\" alt=\"$galerie->nom\">
+          <img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur\" alt=\"$galerie->nom\">
           <h3>{$galerie->nom}</h3>
         </a>
       </article>" ;
