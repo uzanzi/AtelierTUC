@@ -14,10 +14,19 @@ class CreationGalerieView extends TucView{
       $html = "
       <div class ='titreCreationGalerie'><h1>Création d’une galerie</h1></div>
       <div class='contenaireCreationGalerie'>
-          <form action='?action=presenter_galeries' method='post'>
+          <form action='' method='post'>
               <input type='text' name='Titre' id=''>
               <input type='text' name='Description' id=''>
               <input type='submit' value='submit' >
+
+            <input type='radio' name='Acces' value='0' checked>
+            <label for='Acces'> Public </label>
+
+
+            <input type='radio' name='Acces' value='1'>
+            <label for='Acces'> Priver </label>
+
+              
           </form>
       </div>
     ";
