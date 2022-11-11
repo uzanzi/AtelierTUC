@@ -82,7 +82,7 @@ class ListeGaleriesView extends TucView {
       $photo = $galerie->photos()->first();
 
       $html .= "
-      <article class=\"galerie\">
+      <article>
         <a class=\"contenu_tweet\" href=\"$urlGalerie\">";
         if (isset($photo->id)) {
           $html.="<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur\" alt=\"$galerie->nom\">";

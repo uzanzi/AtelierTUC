@@ -40,7 +40,7 @@ class AccueilView extends TucView
             $photo = $galerie->photos()->first();
 
             $html .= "
-              <article class=\"galerie\">
+              <article>
                 <a class=\"contenu_tweet\" href=\"$urlGalerie\">";
 
                 if (isset($photo->id)) {
@@ -70,7 +70,7 @@ class AccueilView extends TucView
             $photo = $galerie->photos()->first();
 
             $html .= "
-              <article class=\"galerie\">
+              <article>
                 <a class=\"contenu_tweet\" href=\"$urlGalerie\">";
 
                 if (isset($photo->id)) {
@@ -102,7 +102,7 @@ class AccueilView extends TucView
         $photo = $galerie->photos()->first();
 
         $html .= "
-          <article class=\"galerie\">
+          <article>
             <a class=\"contenu_tweet\" href=\"$urlGalerie\">";
 
             if (isset($photo->id)) {

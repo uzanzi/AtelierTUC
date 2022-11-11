@@ -2,6 +2,7 @@
 @import "listeGaleries";
 @import "form";
 @import "galerie";
+@import "photo";
 
 *{
   font-family: 'Montserrat', sans-serif;
@@ -52,8 +53,6 @@ body > header{
   }
 }
 body > main{
-  padding: 1rem;
-  padding-top: 5rem;
 
   h2{
     padding: 2.5rem 0 1rem;
