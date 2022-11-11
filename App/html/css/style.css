@@ -14,8 +14,8 @@ ol, ul {
   list-style: none;
 }
 
-.accueil section,
-.lister_galeries section {
+.accueil section:not(:last-child),
+.lister_galeries section:not(:last-child) {
   padding: 0 0 1.5rem;
 }
 .accueil main,
@@ -58,6 +58,30 @@ ol, ul {
   font-weight: 500;
   line-height: 1.3em;
   color: #fff;
+}
+
+form {
+  max-width: 600px;
+  margin: auto;
+}
+form input {
+  box-sizing: border-box;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  border: solid 1px #dadce0;
+  border-radius: 1.5rem;
+  line-height: 1rem;
+}
+form input:not(input[type=radio]) {
+  width: 100%;
+}
+form input[type=submit] {
+  cursor: pointer;
+  background-color: #f0f1f3;
+}
+form p {
+  box-sizing: border-box;
+  margin-bottom: 2rem;
 }
 
 .galerie .photos {
@@ -164,6 +188,9 @@ body > main .pagination a:last-child {
 body > footer {
   background-color: #dadce0;
   padding: 2rem;
+}
+body > footer *:not(:last-child) {
+  margin-bottom: 1rem;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -13,9 +13,9 @@ class AccueilView extends TucView
 
     $router = new Router;
 
-    $urlGaleriesPubliques= $router->urlFor('lister_galeries', ['acces' => 'publiques']);
     $urlGaleriesPrivees= $router->urlFor('lister_galeries', ['acces' => 'privees']);
     $urlGaleriesPartagees= $router->urlFor('lister_galeries', ['acces' => 'partagees']);
+    $urlGaleriesPubliques= $router->urlFor('lister_galeries', ['acces' => 'publiques']);
     
     $html = "<div class=\"accueil\">";
 
@@ -25,9 +25,10 @@ class AccueilView extends TucView
     $galeriesPartagees=$this->data['galeriesPartagees'];
 
       $html.= "
+      <div class=\"presenter_galeries\">
         <section id=\"galeriesPrivees\">
           <header>
-            <h2><a href=\"$urlGaleriesPubliques\">Vos galeries</a></h2>
+            <h2><a href=\"$urlGaleriesPrivees\">Vos galeries<span class=\"material-symbols-outlined\">chevron_right</span></a></h2>
           </header>
           <main>
           ";
@@ -49,16 +50,15 @@ class AccueilView extends TucView
                 }
                   $html.="<h3>{$galerie->nom}</h3>
                 </a>
-              </article>
-            </section>";
+              </article>";
           }
-      $html .= "</main>";
+      $html .= "</main></section>";
 
 
       $html.= "
         <section id=\"galeriesPartagees\">
           <header>
-            <h2><a href=\"$urlGaleriesPrivees\">Galeries partagées avec vous</a></h2>
+            <h2><a href=\"$urlGaleriesPartagees\">Galeries partagées avec vous<span class=\"material-symbols-outlined\">chevron_right</span></a></h2>
           </header>
           <main>
           ";
@@ -80,10 +80,9 @@ class AccueilView extends TucView
                 }
                   $html.="<h3>{$galerie->nom}</h3>
                 </a>
-              </article>
-            </section>";
+              </article>";
           }
-      $html .= "</main>";
+      $html .= "</main></section>";
 
     }
 
@@ -91,7 +90,7 @@ class AccueilView extends TucView
     $html.= "
     <section id=\"galeriesPubliques\">
       <header>
-        <h2><a href=\"$urlGaleriesPartagees\">Galeries publiques</a></h2>
+        <h2><a href=\"$urlGaleriesPubliques\">Galeries publiques<span class=\"material-symbols-outlined\">chevron_right</span></a></h2>
       </header>
       <main>
       ";
@@ -113,10 +112,9 @@ class AccueilView extends TucView
             }
               $html.="<h3>{$galerie->nom}</h3>
             </a>
-          </article>
-        </section>";
+          </article>";
       }
-  $html .= "</main>";
+  $html .= "</main></section>";
 
 
 

@@ -2,7 +2,6 @@
 @import "listeGaleries";
 @import "form";
 @import "galerie";
-// @import "afficherPhoto";
 
 *{
   font-family: 'Montserrat', sans-serif;
@@ -121,4 +120,7 @@ body > main{
 body > footer{
   background-color: #dadce0;
   padding: 2rem;
+  *:not(:last-child){
+    margin-bottom: 1rem;
+  }
 }

@@ -21,40 +21,49 @@ class ListeGaleriesView extends TucView {
       $page = 1;
     }
 
-    $nbItemParPage=36;
+    $nbItemParPage=24;
     
     $offset = $nbItemParPage * $page + 1;
+
+    $urlHome = $router->urlFor('accueil');
+
+
+    if (isset($requeteHttp->get['acces']) && $requeteHttp->get['acces']=='publiques') {
+      
+      $suiteGalerie = Galeries::select()->where('acces', '=', 1)->offset($offset)->first();
+
+    } elseif (isset($requeteHttp->get['acces']) && $requeteHttp->get['acces']=='partagees') {
+
+      $user = Utilisateurs::select()->where('id', '=', TucAuthentification::connectedUser())->first();
+      $suiteGalerie = $user->galeries()->where('niveauAcces', '<', 100)->offset($offset)->first();
+
+    } elseif (isset($requeteHttp->get['acces']) && $requeteHttp->get['acces']=='privees') {
+
+      $user = Utilisateurs::select()->where('id', '=', TucAuthentification::connectedUser())->first();
+      $suiteGalerie = $user->galeries()->where('niveauAcces', '=', 100)->offset($offset)->first();
+
+    }
 
     $galeries = $this->data;
     $requeteHttp = new HttpRequest;
     $router = new Router;
     $html = "
-    <div class=\"liste_galeries\">
+    <div class=\"lister_galeries\">
       <header>
-        <div><a href=\"javascript:history.back()\">
-          <span class=\"material-symbols-outlined\">
+        <h2>
+          <a href=\"$urlHome\" class=\"material-symbols-outlined retour\">
             arrow_back
-          </span>
-        </a></div>
-        <h2>";
+          </a>";
 
         if (isset($requeteHttp->get['acces']) && $requeteHttp->get['acces']=='publiques') {
-      
-          $suiteGalerie = Galeries::select()->where('acces', '=', 1)->offset($offset)->first();
 
           $html.="Galeries Publiques";
 
         } elseif (isset($requeteHttp->get['acces']) && $requeteHttp->get['acces']=='partagees') {
 
-          $user = Utilisateurs::select()->where('id', '=', TucAuthentification::connectedUser())->first();
-          $suiteGalerie = $user->galeries()->where('niveauAcces', '<', 100)->offset($offset)->first();
-
           $html.="Galeries Partagées avec vous";
 
         } elseif (isset($requeteHttp->get['acces']) && $requeteHttp->get['acces']=='privees') {
-
-          $user = Utilisateurs::select()->where('id', '=', TucAuthentification::connectedUser())->first();
-          $suiteGalerie = $user->galeries()->where('niveauAcces', '=', 100)->offset($offset)->first();
 
           $html.="Vos Galeries";
 
@@ -86,14 +95,14 @@ class ListeGaleriesView extends TucView {
       </article>" ;
     }
 
-    $html .= "</main><footer>";
+    $html .= "</main><footer class=\"pagination\">";
 
     if ($page>1) {
       $params = $requeteHttp->get;
       unset($params['action']);
       $params['page']=$page-1;
       $url = $router->urlFor('lister_galeries', $params);
-      $html.="<div><a href=\"$url\"><</a></div>";
+      $html.="<a href=\"$url\" class=\"material-symbols-outlined\">chevron_left</a>";
     }
 
     if (isset($suiteGalerie->id)) {
@@ -101,7 +110,7 @@ class ListeGaleriesView extends TucView {
       unset($params['action']);
       $params['page']=$page+1;
       $url = $router->urlFor('lister_galeries', $params);
-      $html.="<div><a href=\"$url\">></a></div>";
+      $html.="<a href=\"$url\" class=\"material-symbols-outlined\">chevron_right</a>";
     }
 
     $html .= "</footer></div>";

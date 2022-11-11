@@ -1,7 +1,7 @@
 .accueil,
 .lister_galeries{
 
-  section{
+  section:not(:last-child){
     padding: 0 0 1.5rem;
   }
 
