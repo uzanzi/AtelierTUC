@@ -1,0 +1,14 @@
+.galerie{
+
+  .photos{
+      display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    
+    article{
+      height: 210px;
+      flex-grow: 1;
+    }
+  }
+
+}
