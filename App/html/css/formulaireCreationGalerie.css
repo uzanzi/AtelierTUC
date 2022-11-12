@@ -1,3 +1,19 @@
+* {
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  color: inherit;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+ol, ul {
+  list-style: none;
+}
+
 form {
   max-width: 600px;
   padding: 1rem;
