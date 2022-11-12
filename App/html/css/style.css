@@ -106,7 +106,6 @@ form p {
 .galerie .photos article {
   height: 210px;
   flex-grow: 1;
-  text-align: center;
 }
 
 .afficher_photo {
