@@ -1,0 +1,70 @@
+.afficher_photo {
+  min-width: 100%;
+  min-height: 100vh;
+
+  box-sizing: border-box;
+
+  padding-top: calc(100vh - 48px);
+
+  background-color: #dadce0;
+
+  main{
+    padding: 3rem 0 0;
+  }
+
+  #photo{
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    z-index: 0;
+
+    transform: translateX(-50%);
+    
+    img{
+      max-width: calc(100vw - 3rem);
+      max-height: calc(100vh - 5rem);
+      
+      margin: auto;
+
+      border-radius: 1.5rem;
+
+      vertical-align: bottom;
+    }
+
+    a{
+      position: absolute;
+      top: .5rem;
+      left: .5rem;
+
+      padding: .5rem;
+      
+      background-color: #fff;
+      border-radius: 1rem;
+    }
+  }
+
+  section#data-photo{
+    position: relative;
+    z-index: 100;
+
+    box-sizing: border-box;
+    
+    max-width: 600px;
+
+    margin: auto;
+    padding: 1.5rem;
+
+    background-color: #fff;
+
+    border-radius: 1.5rem 1.5rem 0 0;
+
+    h2{
+      padding-top: 0;
+    }
+
+    p:not(:last-child){
+      margin-bottom: .5rem;
+    }
+  }
+}
+
