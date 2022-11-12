@@ -22,7 +22,7 @@ class GalerieView extends TucView
       $page = 1;
     }
 
-    $nbItemParPage=6;
+    $nbItemParPage=25;
     
     $offset = $nbItemParPage * $page + 1;
 
