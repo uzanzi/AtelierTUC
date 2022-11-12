@@ -4,10 +4,9 @@ namespace iutnc\tucapp\control;
 
 use iutnc\mf\control\AbstractController;
 use iutnc\mf\utils\HttpRequest;
-use iutnc\tucapp\auth\TucAuthentification;
 use iutnc\tucapp\model\Galeries;
 use iutnc\tucapp\view\GalerieView;
-
+use iutnc\mf\view\AbstractView;
 
 
 class GalerieController extends AbstractController
@@ -28,10 +27,10 @@ class GalerieController extends AbstractController
 
     $galerie = Galeries::select()->where('id', '=', $requeteHttp->get['id'])->first();
     $photos = $galerie->photos()->offset($offset)->limit($nbItemParPage)->get();
+    
 
-
-
-    ;
+    AbstractView::setAppTitle("$galerie->nom");
+    AbstractView::addStyleSheet('html/css/style.css');
 
     $render = new GalerieView([$galerie, $photos]);
     $render->makePage();

@@ -95,6 +95,9 @@ form p {
   padding: 1rem;
   padding-top: 5rem;
 }
+.galerie h2 {
+  text-align: center;
+}
 .galerie .photos {
   display: flex;
   flex-wrap: wrap;
