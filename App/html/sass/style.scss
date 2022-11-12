@@ -1,14 +1,125 @@
-$main-color : #7b3;
+@import "reset";
+@import "listeGaleries";
+@import "form";
+@import "galerie";
+@import "photo";
 
 *{
-  padding: 0;
-  margin: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
+.material-symbols-outlined {
+  line-height: 1em;
+  font-size: 2rem;
+  vertical-align: bottom;
+
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+body > header{
+  position: fixed;
+  z-index: 1000;
+
+  
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+
+  width: 100%;
+
+  padding: .5em;
+  
+  background-color: #fff;
+  border-bottom: solid 1px #dadce0;
+
+  h1{
+    grid-column: 2;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 2rem;
+  }
+  a{
+    display: inline-block;
+    padding: .5rem;
+  }
+  nav{
+    display: flex;
+    justify-content: end;
+    font-size: 0;
+  }
+}
+body > main{
+
+  h2{
+    padding: 2.5rem 0 1rem;
+
+    font-size: 1.3rem;
+    line-height: 2rem;
+    font-weight: 700;
+
+    a{
+      display: inline-block;
+
+      &.retour{
+        margin-right: 1rem;
+      }
+    }
+    
+  }
+
+  article{
+    overflow: hidden;
+    position: relative;
+    
+    border-radius: 1.5rem;
+
+    img{
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      object-position: center;
+
+      transition: transform .15s ease-out;
+    }
+    &:hover img{
+      transform: scale(1.15);
+    }
+  }
+
+  .pagination{
+    padding-top: 2em;
+    padding-bottom: 1em;
+    text-align: center;
+
+    a{
+      border: solid 1px #dadce0;
+      padding: .5rem;
+
+      &:first-child{
+        &:not(:last-child){
+          border-right: 0px;
+        }
+        padding-left: 1rem;
+        border-top-left-radius: calc(2.5em / 2);
+        border-bottom-left-radius: calc(2.5em / 2);
+      }
+      &:last-child{
+        padding-right: 1rem;
+        border-top-right-radius: calc(2.5em / 2);
+        border-bottom-right-radius: calc(2.5em / 2);
+      }
+    }
+  }
+}
 body > footer{
-  background-color: darken($main-color, 15);
-  color: #fff;
+  background-color: #dadce0;
   padding: 2rem;
+  *:not(:last-child){
+    margin-bottom: 1rem;
+  }
 }
-
-@import "afficherPhoto";

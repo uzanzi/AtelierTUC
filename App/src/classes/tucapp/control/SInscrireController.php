@@ -17,7 +17,7 @@ class SInscrireController extends AbstractController
 
     if ($requeteHttp->method == 'GET' || isset($_SESSION['messagePageSeConnecter'])) {
 
-      AbstractView::setAppTitle('Tweeter App');
+      AbstractView::setAppTitle('TUC Galeries');
       AbstractView::addStyleSheet('html/css/style.css');
   
       $render = new SInscrireView();

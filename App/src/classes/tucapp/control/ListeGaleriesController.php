@@ -23,7 +23,7 @@ class ListeGaleriesController extends AbstractController
       $page = 1;
     }
 
-    $nbItemParPage=36;
+    $nbItemParPage=24;
     
     $offset = $nbItemParPage * ($page-1);
 
