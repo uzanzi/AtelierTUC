@@ -1,4 +1,4 @@
 vendor/
 .sass-cache/
 css/
-conf/db.ini
+conf/config.ini
