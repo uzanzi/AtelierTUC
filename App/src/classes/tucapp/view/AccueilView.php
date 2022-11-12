@@ -33,7 +33,7 @@ class AccueilView extends TucView
         <main>
         <article>
           $html.=\"<img src=\"image_app/plus.png\" alt=\"ajouter une galerie\">";";
-        </main>*
+        </main>
       </section>";
 
       $html.= "
