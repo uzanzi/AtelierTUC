@@ -95,6 +95,9 @@ form p {
   padding: 1rem;
   padding-top: 5rem;
 }
+.galerie h2 {
+  text-align: center;
+}
 .galerie .photos {
   display: flex;
   flex-wrap: wrap;
@@ -103,6 +106,7 @@ form p {
 .galerie .photos article {
   height: 210px;
   flex-grow: 1;
+  text-align: center;
 }
 
 .afficher_photo {

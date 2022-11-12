@@ -30,42 +30,44 @@ class GalerieView extends TucView
   
 
 
-    $html = "
-    <div class='contenaire'>
+
+   
 
 
 
 
-    ";
 
-      $html .= "
-      <p> \" Le nom de la Galerie est : $galerie->nom \" </p>
+
+    $html = "<div class='galerie'>";
+    
+    $html .= "
+      <h2> Galerie : $galerie->nom </h2>
       
     ";
-    
+    $html .= "<div class='photos'>";
 
     foreach($photos as $photo){
     
       $html .= "
+        <article class=\"article\">
+            <a class=\"contenu_tweet\" href=\"index.php?action=afficher_photo&id=$photo->id\">";
     
-      <article class=\"galerie\">
-                <a class=\"contenu_tweet\" href=\"index.php?action=afficher_photo&id=$photo->id\">";
-
-                if (isset($photo->id)) {
-                  $html.="<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur\" alt=\"$photo->titre\">";
-                
-                } else {
-                  $html.="<img src=\"https://picsum.photos/id/1000/200/200\" alt=\"$photo->titre\">";
-                }
-                  $html.="
-                </a>
-              </article>
+            if (isset($photo->id)) {
+              $html.="<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur\" alt=\"$photo->titre\">";
+            
+            } else {
+              $html.="<img src=\"https://picsum.photos/id/1000/200/200\" alt=\"$photo->titre\">";
+            }
+              $html.="
+            </a>
+        </article>
       
     ";
     }
+  
 
 
-
+    $html .= "</div>";
     $html .= "</div>";
     if ($page>1) {
       $params = $requeteHttp->get;
