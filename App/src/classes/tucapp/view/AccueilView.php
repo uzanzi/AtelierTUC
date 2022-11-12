@@ -24,20 +24,29 @@ class AccueilView extends TucView
     $galeriesPrivees=$this->data['galeriesPrivees'];
     $galeriesPartagees=$this->data['galeriesPartagees'];
 
-      $html.= "
+    $html.= "
 
-      <section id=\"ajouter_galeries\">
+    <section id=\"ajouter_galeries\">
+      <header>
+        <h2><a href=\"/AtelierTUC/App/?action=ajouter_galerie\">Ajouter une galeries<span class=\"material-symbols-outlined\">chevron_right</span></a></h2>
+      </header>
+      <main>
+      <article>
+        <a class=\"ajouter_galerie\" href=\"/AtelierTUC/App/?action=ajouter_galerie\">
+            <img src=\"image_app/plus.png\" alt=\"ajouter une galerie\">
+        </a>
+      </article>
+      </main>
+    </section>";
+
+    $html.= "
+    <div class=\"presenter_galeries\">
+      <section id=\"galeriesPrivees\">
         <header>
-          <h2><a href=\"/AtelierTUC/App/?action=ajouter_galerie\">Ajouter une galeries<span class=\"material-symbols-outlined\">chevron_right</span></a></h2>
+          <h2><a href=\"$urlGaleriesPrivees\">Vos galeries<span class=\"material-symbols-outlined\">chevron_right</span></a></h2>
         </header>
         <main>
-        <article>
-      \"<img src=\"image_app/plus.png\" alt=\"ajouter une galerie\">
-        </article>
-        </main>
-      </section>
-      "
-      ;
+        ";
 
           foreach ($galeriesPrivees as $galerie){
             
@@ -47,7 +56,7 @@ class AccueilView extends TucView
 
             $html .= "
               <article>
-                <a class=\"contenu_tweet\" href=\"$urlGalerie\">";
+                <a class=\"nouvelle_image\" href=\"$urlGalerie\">";
 
                 if (isset($photo->id)) {
                   $html.="<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur\" alt=\"$galerie->nom\">";
