@@ -32,7 +32,7 @@ class AccueilView extends TucView
       </header>
       <main>
       <article>
-        <a class=\"ajouter_galerie\" href=\"/AtelierTUC/App/?action=ajouter_galerie\">
+        <a class=\"material-symbols-outlined\" href=\"/AtelierTUC/App/?action=ajouter_galerie\">
             <img src=\"image_app/plus.png\" alt=\"ajouter une galerie\">
         </a>
       </article>
