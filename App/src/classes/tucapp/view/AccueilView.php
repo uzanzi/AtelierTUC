@@ -32,18 +32,12 @@ class AccueilView extends TucView
         </header>
         <main>
         <article>
-          $html.=\"<img src=\"image_app/plus.png\" alt=\"ajouter une galerie\">";";
+      \"<img src=\"image_app/plus.png\" alt=\"ajouter une galerie\">
+        </article>
         </main>
-      </section>";
-
-      $html.= "
-      <div class=\"presenter_galeries\">
-        <section id=\"galeriesPrivees\">
-          <header>
-            <h2><a href=\"$urlGaleriesPrivees\">Vos galeries<span class=\"material-symbols-outlined\">chevron_right</span></a></h2>
-          </header>
-          <main>
-          ";
+      </section>
+      "
+      ;
 
           foreach ($galeriesPrivees as $galerie){
             
