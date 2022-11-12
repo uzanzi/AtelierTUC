@@ -29,20 +29,15 @@ class GalerieView extends TucView
     $suiteImage = $galerie->photos()->offset($offset)->limit($nbItemParPage)->first();
   
 
-
-
-   
-
-
-
-
-
-
     $html = "<div class='galerie'>";
     
     $html .= "
+      <div class='topGalerie'>
       <h2> Galerie : $galerie->nom </h2>
-      
+      <form action='?action=presenter_galeries' method='post'>
+        <input type='submit' class='boutonSupprimerGalerie' value=''>
+      </form>
+      </div>
     ";
     $html .= "<div class='photos'>";
 

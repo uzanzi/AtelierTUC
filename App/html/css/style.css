@@ -95,8 +95,29 @@ form p {
   padding: 1rem;
   padding-top: 5rem;
 }
-.galerie h2 {
-  text-align: center;
+.galerie .topGalerie {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.galerie .topGalerie form {
+  width: 2rem;
+  height: 2rem;
+  max-width: 0;
+  padding: 0;
+  padding-top: 0;
+  margin: 0;
+}
+.galerie .topGalerie form .boutonSupprimerGalerie {
+  background: url(../../image_app/poubelle.png);
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  width: 2rem;
+  height: 2rem;
+  background-position-x: center;
+  background-position-y: center;
+}
+.galerie .topGalerie form .boutonSupprimerGalerie:hover {
+  background-color: gainsboro;
 }
 .galerie .photos {
   display: flex;
