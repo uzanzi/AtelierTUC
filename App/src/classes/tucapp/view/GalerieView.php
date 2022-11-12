@@ -4,7 +4,6 @@ namespace iutnc\tucapp\view;
 
 use iutnc\mf\router\Router;
 use iutnc\mf\utils\HttpRequest;
-use iutnc\tucapp\model\Galeries;
 
 class GalerieView extends TucView
 {
