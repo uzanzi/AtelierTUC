@@ -25,6 +25,18 @@ class AccueilView extends TucView
     $galeriesPartagees=$this->data['galeriesPartagees'];
 
       $html.= "
+
+      <section id=\"ajouter_galeries\">
+        <header>
+          <h2><a href=\"/AtelierTUC/App/?action=ajouter_galerie\">Ajouter une galeries<span class=\"material-symbols-outlined\">chevron_right</span></a></h2>
+        </header>
+        <main>
+        <article>
+          $html.=\"<img src=\"image_app/plus.png\" alt=\"ajouter une galerie\">";";
+        </main>*
+      </section>";
+
+      $html.= "
       <div class=\"presenter_galeries\">
         <section id=\"galeriesPrivees\">
           <header>
