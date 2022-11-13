@@ -2,12 +2,13 @@
 
 namespace iutnc\tucapp\control;
 
-use iutnc\mf\control\AbstractController;
 use iutnc\mf\utils\HttpRequest;
+use iutnc\mf\view\AbstractView;
 use iutnc\tucapp\model\Galeries;
 use iutnc\tucapp\view\GalerieView;
-use iutnc\mf\view\AbstractView;
-
+use iutnc\tucapp\model\Utilisateurs;
+use iutnc\mf\control\AbstractController;
+use iutnc\tucapp\auth\TucAuthentification;
 
 class GalerieController extends AbstractController
 {
@@ -26,14 +27,26 @@ class GalerieController extends AbstractController
     $offset = $nbItemParPage * ($page-1);
 
     $galerie = Galeries::select()->where('id', '=', $requeteHttp->get['id'])->first();
+    
     $photos = $galerie->photos()->offset($offset)->limit($nbItemParPage)->get();
+
+    $galerie_utilisateur = $galerie->utilisateurs()->first();
     
 
-    AbstractView::setAppTitle("$galerie->nom");
-    AbstractView::addStyleSheet('html/css/style.css');
+    $acces_galerie = $galerie->acces;
 
-    $render = new GalerieView([$galerie, $photos]);
-    $render->makePage();
+    if($acces_galerie  == 1 || $galerie_utilisateur->id === TucAuthentification::connectedUser()){
+      AbstractView::setAppTitle("$galerie->nom");
+      AbstractView::addStyleSheet('html/css/style.css');
+  
+      $render = new GalerieView([$galerie, $photos, $galerie_utilisateur]);
+      $render->makePage();
+    }
+
+    
+    
+
+
 
   }
 }
