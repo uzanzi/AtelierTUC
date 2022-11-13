@@ -1,0 +1,277 @@
+* {
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  color: inherit;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+.accueil,
+.lister_galeries {
+  padding: 1rem;
+  padding-top: 5rem;
+}
+.accueil section:not(:last-child),
+.lister_galeries section:not(:last-child) {
+  padding: 0 0 1.5rem;
+}
+.accueil main,
+.lister_galeries main {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: repeat(2, 1fr);
+  margin: auto;
+}
+@media screen and (min-width: calc(570px + 4rem)) {
+  .accueil main,
+  .lister_galeries main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: calc(760px + 5rem)) {
+  .accueil main,
+  .lister_galeries main {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (min-width: calc(1140px + 7rem)) {
+  .accueil main,
+  .lister_galeries main {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+.accueil main article,
+.lister_galeries main article {
+  aspect-ratio: 1/1;
+}
+.accueil main article h3,
+.lister_galeries main article h3 {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 1.2em 1em 0.7em;
+  background: linear-gradient(0deg, rgba(36, 36, 36, 0.7) calc(100% - 2em), rgba(40, 40, 40, 0));
+  font-size: 1.1em;
+  font-weight: 500;
+  line-height: 1.3em;
+  color: #fff;
+}
+
+form {
+  max-width: 600px;
+  padding: 1rem;
+  padding-top: 5rem;
+  margin: auto;
+}
+form input {
+  box-sizing: border-box;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  border: solid 1px #dadce0;
+  border-radius: 1.5rem;
+  line-height: 1rem;
+}
+form input:not(input[type=radio]) {
+  width: 100%;
+}
+form input[type=submit] {
+  cursor: pointer;
+  background-color: #f0f1f3;
+}
+form p {
+  box-sizing: border-box;
+  margin-bottom: 2rem;
+}
+
+.galerie {
+  padding: 1rem;
+  padding-top: 5rem;
+}
+.galerie .topGalerie {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.galerie .topGalerie form {
+  width: 2rem;
+  height: 2rem;
+  max-width: 0;
+  padding: 0;
+  padding-top: 0;
+  margin: 0;
+}
+.galerie .topGalerie form .boutonSupprimerGalerie {
+  background: url(../../image_app/poubelle.png);
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  width: 2rem;
+  height: 2rem;
+  background-position-x: center;
+  background-position-y: center;
+}
+.galerie .topGalerie form .boutonSupprimerGalerie:hover {
+  background-color: gainsboro;
+}
+.galerie .photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+.galerie .photos article {
+  height: 210px;
+  flex-grow: 1;
+  min-width: 12rem;
+}
+
+.afficher_photo {
+  min-width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding-top: calc(100vh - 48px);
+  background-color: #dadce0;
+}
+.afficher_photo main {
+  padding: 3rem 0 0;
+}
+.afficher_photo #photo {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  z-index: 0;
+  transform: translateX(-50%);
+}
+.afficher_photo #photo img {
+  max-width: calc(100vw - 3rem);
+  max-height: calc(100vh - 5rem);
+  margin: auto;
+  border-radius: 1.5rem;
+  vertical-align: bottom;
+}
+.afficher_photo #photo a {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.5rem;
+  background-color: #fff;
+  border-radius: 1rem;
+}
+.afficher_photo section#data-photo {
+  position: relative;
+  z-index: 100;
+  box-sizing: border-box;
+  max-width: 600px;
+  margin: auto;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+.afficher_photo section#data-photo h2 {
+  padding-top: 0;
+}
+.afficher_photo section#data-photo p:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+.material-symbols-outlined {
+  line-height: 1em;
+  font-size: 2rem;
+  vertical-align: bottom;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+
+body > header {
+  position: fixed;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  width: 100%;
+  padding: 0.5em;
+  background-color: #fff;
+  border-bottom: solid 1px #dadce0;
+}
+body > header h1 {
+  grid-column: 2;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 2rem;
+}
+body > header a {
+  display: inline-block;
+  padding: 0.5rem;
+}
+body > header nav {
+  display: flex;
+  justify-content: end;
+  font-size: 0;
+}
+
+body > main h2 {
+  padding: 2.5rem 0 1rem;
+  font-size: 1.3rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+body > main h2 a {
+  display: inline-block;
+}
+body > main h2 a.retour {
+  margin-right: 1rem;
+}
+body > main article {
+  overflow: hidden;
+  position: relative;
+  border-radius: 1.5rem;
+}
+body > main article img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.15s ease-out;
+}
+body > main article:hover img {
+  transform: scale(1.15);
+}
+body > main .pagination {
+  padding-top: 2em;
+  padding-bottom: 1em;
+  text-align: center;
+}
+body > main .pagination a {
+  border: solid 1px #dadce0;
+  padding: 0.5rem;
+}
+body > main .pagination a:first-child {
+  padding-left: 1rem;
+  border-top-left-radius: 1.25em;
+  border-bottom-left-radius: 1.25em;
+}
+body > main .pagination a:first-child:not(:last-child) {
+  border-right: 0px;
+}
+body > main .pagination a:last-child {
+  padding-right: 1rem;
+  border-top-right-radius: 1.25em;
+  border-bottom-right-radius: 1.25em;
+}
+
+body > footer {
+  background-color: #dadce0;
+  padding: 2rem;
+}
+body > footer *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+/*# sourceMappingURL=style.css.map */

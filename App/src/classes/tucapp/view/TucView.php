@@ -49,13 +49,9 @@ class TucView extends AbstractView implements Renderer{
       <header>
       <h1><a href="{$router->urlFor('presenter_galeries')}">TUC Galeries</a></h1>
       <nav>
-        <ul>
-          <li><a href="{$router->urlFor('se_deconnecter')}">
-            <span class="material-symbols-outlined">
-              logout
-            </span>
-          </a></li>
-        </ul>
+        <a href="{$router->urlFor('se_deconnecter')}" class="material-symbols-outlined">
+          logout
+        </a>
       </nav>
     </header>
     EOT;
@@ -64,18 +60,12 @@ class TucView extends AbstractView implements Renderer{
       <header>
       <h1><a href="{$router->urlFor('presenter_galeries')}">TUC Galeries</a></h1>
       <nav>
-        <ul>
-          <li><a href="{$router->urlFor('s_inscrire')}">
-            <span class="material-symbols-outlined">
-              person_add
-            </span>
-          </a></li>
-          <li><a href="{$router->urlFor('se_connecter')}">
-            <span class="material-symbols-outlined">
-              login
-            </span>
-          </a></li>
-        </ul>
+        <a href="{$router->urlFor('s_inscrire')}" class="material-symbols-outlined">
+          person_add
+        </a>
+        <a href="{$router->urlFor('se_connecter')}" class="material-symbols-outlined">
+          login
+        </a>
       </nav>
     </header>
     EOT;

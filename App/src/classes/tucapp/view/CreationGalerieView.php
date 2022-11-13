@@ -2,8 +2,6 @@
 
 namespace iutnc\tucapp\view;
 
-use iutnc\mf\router\Router;
-use iutnc\tucapp\model\Tweet;
 use iutnc\tucapp\view\TucView;
 
 class CreationGalerieView extends TucView{
@@ -11,29 +9,37 @@ class CreationGalerieView extends TucView{
   public function render(): string {
 
 
-      $html = "
-      <div class ='titreCreationGalerie'><h1>Création d’une galerie</h1></div>
-      <div class='contenaireCreationGalerie'>
-          <form action='' method='post'>
-              <input type='text' name='Titre' id=''>
-              <input type='text' name='Description' id=''>
-              <input type='submit' value='submit' >
+    $html = "
+      <div class='ajouter_galerie'>
+        <form action='?action=presenter_galeries' method='post'>
 
-            <input type='radio' name='Acces' value='0' checked>
-            <label for='Acces'> Public </label>
+          <h1>Création d’une galerie</h1>
+          <input type='text' name='Titre' placeholder='Nom de votre Galerie' id=''>
+          <input type='text' name='Description' placeholder='Description' id=''>
 
-
-            <input type='radio' name='Acces' value='1'>
-            <label for='Acces'> Priver </label>
-
+          <fieldset>
               
-          </form>
+            <legend>Choisir l'acces à votre galerie : </legend>
+            <div class='creation_galerie_radio'>
+
+              <input type='radio' name='Acces' value='1' checked>
+              <label for='Acces'> Public </label>
+              <input type='radio' name='Acces' value='0'>
+              <label for='Acces'> Privée </label>
+
+            </div>
+
+          </fieldset>
+
+          <input type='submit' value='Enregistrer'>
+
+        </form>
       </div>
     ";
 
     return $html; 
 
         
-    }
+  }
     
 } 

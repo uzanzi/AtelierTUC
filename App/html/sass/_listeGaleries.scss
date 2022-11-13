@@ -1,0 +1,55 @@
+.accueil,
+.lister_galeries{
+  padding: 1rem;
+  padding-top: 5rem;
+
+  section:not(:last-child){
+    padding: 0 0 1.5rem;
+  }
+
+  main{
+
+    display: grid;
+    gap: 1em;
+    grid-template-columns: repeat(2, 1fr);
+    
+    @media screen and (min-width: calc(190px * 3 + 1rem * 4)) {
+      
+      grid-template-columns: repeat(3, 1fr);
+      
+    }
+    @media screen and (min-width: calc(190px * 4 + 1rem * 5)) {
+      
+      grid-template-columns: repeat(4, 1fr);
+      
+    }
+    @media screen and (min-width: calc(190px * 6 + 1rem * 7)) {
+      
+      grid-template-columns: repeat(6, 1fr);
+      
+    }
+
+    margin: auto;
+
+    article{
+      aspect-ratio : 1 / 1;
+
+      h3{
+        position: absolute;
+        bottom: 0;
+
+        width: 100%;
+        padding: 1.2em 1em .7em;
+
+        background: linear-gradient(0deg, rgba(36,36,36,70%) calc(100% - 2em), rgba(40,40,40,0%));
+
+        font-size: 1.1em;
+        font-weight: 500;
+        line-height: 1.3em;
+        color: #fff;
+      }
+
+
+    }
+  }
+}

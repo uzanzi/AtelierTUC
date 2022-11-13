@@ -13,9 +13,9 @@ class AccueilView extends TucView
 
     $router = new Router;
 
-    $urlGaleriesPubliques= $router->urlFor('lister_galeries', ['acces' => 'publiques']);
     $urlGaleriesPrivees= $router->urlFor('lister_galeries', ['acces' => 'privees']);
     $urlGaleriesPartagees= $router->urlFor('lister_galeries', ['acces' => 'partagees']);
+    $urlGaleriesPubliques= $router->urlFor('lister_galeries', ['acces' => 'publiques']);
     
     $html = "<div class=\"accueil\">";
 
@@ -24,13 +24,29 @@ class AccueilView extends TucView
     $galeriesPrivees=$this->data['galeriesPrivees'];
     $galeriesPartagees=$this->data['galeriesPartagees'];
 
-      $html.= "
-        <section id=\"galeriesPrivees\">
-          <header>
-            <h2><a href=\"$urlGaleriesPubliques\">Vos galeries</a></h2>
-          </header>
-          <main>
-          ";
+    $html.= "
+
+    <section id=\"ajouter_galeries\">
+      <header>
+        <h2><a href=\"/AtelierTUC/App/?action=ajouter_galerie\">Ajouter une galeries<span class=\"material-symbols-outlined\">chevron_right</span></a></h2>
+      </header>
+      <main>
+      <article>
+        <a class=\"material-symbols-outlined\" href=\"/AtelierTUC/App/?action=ajouter_galerie\">
+            <img src=\"image_app/plus.png\" alt=\"ajouter une galerie\">
+        </a>
+      </article>
+      </main>
+    </section>";
+
+    $html.= "
+    <div class=\"presenter_galeries\">
+      <section id=\"galeriesPrivees\">
+        <header>
+          <h2><a href=\"$urlGaleriesPrivees\">Vos galeries<span class=\"material-symbols-outlined\">chevron_right</span></a></h2>
+        </header>
+        <main>
+        ";
 
           foreach ($galeriesPrivees as $galerie){
             
@@ -39,8 +55,8 @@ class AccueilView extends TucView
             $photo = $galerie->photos()->first();
 
             $html .= "
-              <article class=\"galerie\">
-                <a class=\"contenu_tweet\" href=\"$urlGalerie\">";
+              <article>
+                <a class=\"nouvelle_image\" href=\"$urlGalerie\">";
 
                 if (isset($photo->id)) {
                   $html.="<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur\" alt=\"$galerie->nom\">";
@@ -49,16 +65,15 @@ class AccueilView extends TucView
                 }
                   $html.="<h3>{$galerie->nom}</h3>
                 </a>
-              </article>
-            </section>";
+              </article>";
           }
-      $html .= "</main>";
+      $html .= "</main></section>";
 
 
       $html.= "
         <section id=\"galeriesPartagees\">
           <header>
-            <h2><a href=\"$urlGaleriesPrivees\">Galeries partagées avec vous</a></h2>
+            <h2><a href=\"$urlGaleriesPartagees\">Galeries partagées avec vous<span class=\"material-symbols-outlined\">chevron_right</span></a></h2>
           </header>
           <main>
           ";
@@ -70,7 +85,7 @@ class AccueilView extends TucView
             $photo = $galerie->photos()->first();
 
             $html .= "
-              <article class=\"galerie\">
+              <article>
                 <a class=\"contenu_tweet\" href=\"$urlGalerie\">";
 
                 if (isset($photo->id)) {
@@ -80,10 +95,9 @@ class AccueilView extends TucView
                 }
                   $html.="<h3>{$galerie->nom}</h3>
                 </a>
-              </article>
-            </section>";
+              </article>";
           }
-      $html .= "</main>";
+      $html .= "</main></section>";
 
     }
 
@@ -91,7 +105,7 @@ class AccueilView extends TucView
     $html.= "
     <section id=\"galeriesPubliques\">
       <header>
-        <h2><a href=\"$urlGaleriesPartagees\">Galeries publiques</a></h2>
+        <h2><a href=\"$urlGaleriesPubliques\">Galeries publiques<span class=\"material-symbols-outlined\">chevron_right</span></a></h2>
       </header>
       <main>
       ";
@@ -103,7 +117,7 @@ class AccueilView extends TucView
         $photo = $galerie->photos()->first();
 
         $html .= "
-          <article class=\"galerie\">
+          <article>
             <a class=\"contenu_tweet\" href=\"$urlGalerie\">";
 
             if (isset($photo->id)) {
@@ -113,10 +127,9 @@ class AccueilView extends TucView
             }
               $html.="<h3>{$galerie->nom}</h3>
             </a>
-          </article>
-        </section>";
+          </article>";
       }
-  $html .= "</main>";
+  $html .= "</main></section>";
 
 
 

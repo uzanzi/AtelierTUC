@@ -32,7 +32,7 @@ class AjouterGalerieController extends AbstractController{
         if ($requeteHttp->method == 'GET'){
 
           AbstractView::setAppTitle("Création Galerie");
-          AbstractView::addStyleSheet('html/css/style.css');
+          AbstractView::addStyleSheet('html/css/formulaireCreationGalerie.css');
           $render = new CreationGalerieView ;
           $render->makePage();
 
