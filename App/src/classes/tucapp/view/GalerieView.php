@@ -4,15 +4,18 @@ namespace iutnc\tucapp\view;
 
 use iutnc\mf\router\Router;
 use iutnc\mf\utils\HttpRequest;
+use iutnc\tucapp\auth\TucAuthentification;
 
 class GalerieView extends TucView
 {
   public function render(): string {
 
     $router = new Router;
+    
 
     $galerie = $this->data[0];
     $photos = $this->data[1];
+    $galerie_utilisateur= $this->data[2];
 
     $requeteHttp = new HttpRequest();
     
@@ -22,27 +25,34 @@ class GalerieView extends TucView
       $page = 1;
     }
 
+
+
+
+
     $nbItemParPage=25;
     
     $offset = $nbItemParPage * $page + 1;
 
     $suiteImage = $galerie->photos()->offset($offset)->limit($nbItemParPage)->first();
-  
 
-
-
-   
-
-
-
-
-
-
+    $urlSupprimerGalerie = $router->urlFor('supprimer_galerie', ['id'=>$requeteHttp->get['id']]);
     $html = "<div class='galerie'>";
     
     $html .= "
-      <h2> Galerie : $galerie->nom </h2>
-      
+      <div class='topGalerie'>
+      <h2> Galerie : $galerie->nom </h2>";
+      if (TucAuthentification::connectedUser() ){
+
+        if (TucAuthentification::connectedUser()  === $galerie_utilisateur->id){
+    $html .="
+      <form action=\"$urlSupprimerGalerie\" method='post'>
+        <input type='submit' class='boutonSupprimerGalerie' value='' name='test'>
+      </form>";
+      }
+    }
+
+      $html .=" 
+      </div>
     ";
     $html .= "<div class='photos'>";
 
