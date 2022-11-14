@@ -1,3 +1,4 @@
 vendor/
 .sass-cache/
 App/conf/config.ini
+.vscode/
