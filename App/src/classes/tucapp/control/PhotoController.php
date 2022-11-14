@@ -26,7 +26,8 @@ class PhotoController extends AbstractController
           $idPhoto = $requeteHttp->get['id'];
           if (DB::table('galeries_photos')->where('id_galerie', '=', $requeteHttp->get['idGalerie'])->where('id_photo', '=', $idPhoto)->first()) {
             $photo = Photos::select()->where("id", "=", $idPhoto)->first();
-            $renderPhotoView = new PhotoView($photo);
+            $motsClefs = DB::table('mots_clefs_photos')->where('id_photo', '=', $idPhoto)->get();
+            $renderPhotoView = new PhotoView([$photo, $motsClefs]);
             $renderPhotoView::setAppTitle("TUC • " . $photo->titre);
             $renderPhotoView::addStyleSheet('html/css/style.css');
             $renderPhotoView->makePage();
