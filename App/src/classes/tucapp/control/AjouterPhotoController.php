@@ -20,9 +20,9 @@ class AjouterPhotoController extends AbstractController
   {
     $httpRequest = new HttpRequest();
     $galerie = Galeries::select()->where('id', '=', $httpRequest->get['id'])->first();
-    $galerie_utilisateur = $galerie->utilisateurs()->first();
+    $acces_utilisateur = $galerie->utilisateurs()->where('id_utilisateur', '=', TucAuthentification::connectedUser())->where('niveauAcces', '=', 100)->first();
 
-    if (TucAuthentification::connectedUser() AND TucAuthentification::connectedUser() == $galerie_utilisateur->id){
+    if (TucAuthentification::connectedUser() AND isset($acces_utilisateur)){
       
       $idGalerie = $httpRequest->get['id'];
       if ($httpRequest->method === 'GET') {
