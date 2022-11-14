@@ -19,7 +19,8 @@ $db->bootEloquent();           /* établir la connexion */
 
 $router = new \iutnc\mf\router\Router();
 
-$router->addRoute('accueil', 'presenter_galeries', '\iutnc\tucapp\control\AProposController');
+$router->addRoute('accueil', 'presenter_galeries', '\iutnc\tucapp\control\AccueilController');
+$router->addRoute('a_propos', 'a_propos', '\iutnc\tucapp\control\AProposController');
 $router->addRoute('list_galerie', 'lister_galeries', '\iutnc\tucapp\control\ListeGaleriesController');
 $router->addRoute('galerie', 'afficher_galerie', '\iutnc\tucapp\control\GalerieController');
 $router->addRoute('ajout_galerie', 'ajouter_galerie', '\iutnc\tucapp\control\AjouterGalerieController');
