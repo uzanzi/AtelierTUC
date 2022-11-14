@@ -14,18 +14,18 @@ class CreationGalerieView extends TucView{
         <form action='?action=ajouter_galerie' method='post'>
 
           <h1>Création d’une galerie</h1>
-          <input type='text' name='Titre' placeholder='Nom de votre Galerie' id='' require>
-          <input type='text' name='Description' placeholder='Description' id='' require>
+          <input type='text' name='Titre' placeholder='Nom de votre Galerie' id='' required>
+          <input type='text' name='Description' placeholder='Description' id='' required>
 
           <fieldset>
               
             <legend>Choisir l'acces à votre galerie : </legend>
             <div class='creation_galerie_radio'>
 
-              <input type='radio' name='Acces' value='1' checked >
-              <label for='Acces'> Public </label>
-              <input type='radio' name='Acces' value='0'>
+              <input type='radio' name='Acces' value='0'checked>
               <label for='Acces'> Privée </label>
+              <input type='radio' name='Acces' value='1'>
+              <label for='Acces'> Publique </label>
 
             </div>
 
