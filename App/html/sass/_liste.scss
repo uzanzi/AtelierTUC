@@ -1,0 +1,36 @@
+.listeMotsClefs,
+.listePartages{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  li{
+    background-color: #dadce0;
+    border-radius: 4px;
+  }
+  
+  .material-symbols-outlined{
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+  }
+  
+  a{
+    display: inline-block;
+    line-height: 1.6rem;
+    padding: 0 .6rem;
+
+    span.material-symbols-outlined{
+      font-size: 0rem;
+      transition: font-size 0.15s ease-out, padding-left 0.15s ease-out;
+    }
+    
+    &:hover{
+      span.material-symbols-outlined{
+        padding-left: 0.3rem;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

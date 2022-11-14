@@ -38,12 +38,23 @@ class PhotoView extends TucView
         <p>Format : {$data[0]->format}</p>
         <p>Hauteur : {$data[0]->hauteur}</p>
         <p>Largeur : {$data[0]->largeur}</p>
-        <p>Mots clefs :  </p>
-        <ul>
- EOT;
-          foreach ($data[1] as $mot_clef){
-            $html.= "<li>$mot_clef->mot_clef</li>";
-          }
+EOT;
+
+
+if ($data[2] == 100) {
+  $html.= "<ul class=\"listeMotsClefs\">
+    <li><a href=\"?action=ajouter_mot_clef&id={$requete->get['id']}&idGalerie={$requete->get['idGalerie']}\" class=\"material-symbols-outlined\">add</a></li>";
+
+    foreach ($data[1] as $mot_clef){
+      $html.= "<li><a href=\"?action=supprimer_mot_clef&motClef={$mot_clef->mot_clef}&id={$requete->get['id']}&idGalerie={$requete->get['idGalerie']}\">$mot_clef->mot_clef<span class=\"material-symbols-outlined\">delete</span></a></li>";
+    }
+} else {
+  $html.= "<ul class=\"listePartages\">";
+
+    foreach ($data[1] as $mot_clef){
+      $html.= "<li>$mot_clef->mot_clef</li>";
+    }
+}
           $html.= <<<EOT
         </ul>
       </section>

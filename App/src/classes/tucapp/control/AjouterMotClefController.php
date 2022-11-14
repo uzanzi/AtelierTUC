@@ -60,12 +60,12 @@ class AjouterMotClefController extends AbstractController
 
           $id = $httpRequest->get['id'];
 
-          DB::table('mots_clefs_galeries')->insert(['mot_clef' => "$motclef->mot_clef", 'id_galerie' => "$id"]);
+          DB::table('mots_clefs_galeries')->insert(['mot_clef' => strtolower($motclef->mot_clef), 'id_galerie' => "$id"]);
           Router::executeRoute('galerie');
 
         } else {
 
-          DB::table('mots_clefs_photos')->insert(['mot_clef' => "$motclef->mot_clef", 'id_photo' => "$$httpRequest->get['id']"]);
+          DB::table('mots_clefs_photos')->insert(['mot_clef' => strtolower($motclef->mot_clef), 'id_photo' => $httpRequest->get['id']]);
           Router::executeRoute('photo');
 
         }
