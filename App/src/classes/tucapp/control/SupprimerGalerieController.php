@@ -1,6 +1,7 @@
 <?php
-namespace iutnc\tucapp\control;
 
+namespace iutnc\tucapp\control;
+use Illuminate\Database\Capsule\Manager as DB;
 use iutnc\mf\utils\HttpRequest;
 use iutnc\mf\view\AbstractView;
 
@@ -25,47 +26,68 @@ class SupprimerGalerieController extends AbstractController{
 
 
     //   Router::executeRoute('default');
-
+    $requeteHttp = new HttpRequest;
+    $galerie = Galeries::select()->where('id', '=', $requeteHttp->get['id'])->first();
+    $galerie_utilisateur = $galerie->utilisateurs()->first();
         
-        $requeteHttp = new HttpRequest ;
 
-        $galerie = new Galeries();
-        $galerie = Galeries::select()->where('id', '=', $requeteHttp->get['id'])->first();
-        $nom = $galerie->nom;
-        
-        unset($_POST);
-        $requeteHttp = new HttpRequest;
-        if ($requeteHttp->method == 'GET'){
 
-          AbstractView::setAppTitle("Supprimer Galerie");
-          AbstractView::addStyleSheet('html/css/formulaireCreationGalerie.css');
+    if (TucAuthentification::connectedUser() AND TucAuthentification::connectedUser() == $galerie_utilisateur->id){
+    
           
+          $idGalerie = $requeteHttp->get['id'];
+          $galerie = new Galeries();
+          $galerie = Galeries::select()->where('id', '=', $requeteHttp->get['id'])->first();
+          $nom = $galerie->nom;
           
-          $render = new SupprimerGalerieView([$nom]) ;
-          $render->makePage();
-          echo(TucAuthentification::connectedUser());
+          unset($_POST);
+          
+          if ($requeteHttp->method == 'GET'){
 
-
-        }
-        elseif ($requeteHttp->method == 'POST') {
-          try {
+            AbstractView::setAppTitle("Supprimer Galerie");
+            AbstractView::addStyleSheet('html/css/style.css');
             
-
-                if(isset($_POST['submitSupprimerGalerie'])){
-                    echo(TucAuthentification::connectedUser());
-                }
-
             
-          } catch (\Throwable $th) {
-            echo( $th->getMessage());
+            $render = new SupprimerGalerieView([$nom,$idGalerie]) ;
+            $render->makePage();
+  
+  
           }
+          elseif ($requeteHttp->method == 'POST') {
+            try {
+              $requeteHttp = new HttpRequest ;
+              $galerie = Galeries::select()->where('id', '=', $requeteHttp->get['id'])->first();
+              $galerie_utilisateur = $galerie->utilisateurs()->first();
+
+              
+              $requeteHttp = new HttpRequest ;
+              $idGalerie = $requeteHttp->get['id'];
+          
+              DB::table('galeries')->where('id',$idGalerie)->delete();
+              DB::table('galeries_photos')->where('id_galerie',$idGalerie)->delete(); 
+
+              Router::executeRoute('accueil');
 
 
+
+  
+              
+            } catch (\Throwable $th) {
+              echo( $th->getMessage());
+            }
+  
+        }
+        
+
+        }else{
+          echo "<script>alert(\"Vous n'avez pas les droits pour supprimer cette galerie\")</script>";
+        Router::executeRoute('accueil');
         }
 
 
     }else{
-        Router::executeRoute('default');
+      echo "<script>alert(\"Vous n'avez pas les droits pour supprimer cette galerie\")</script>";
+      Router::executeRoute('accueil');
     }
   }          
 }
