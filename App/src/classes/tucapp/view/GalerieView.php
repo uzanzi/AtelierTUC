@@ -78,6 +78,7 @@ class GalerieView extends TucView
 
       $html .= "
       <article class=\"article\">
+
         <a class=\"contenu_tweet\" href=\"$urlPhoto\">";
 
       if ($photo->format == "api") {
