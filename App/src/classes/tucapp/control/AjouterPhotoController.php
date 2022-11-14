@@ -8,7 +8,6 @@ namespace iutnc\tucapp\control;
 use iutnc\mf\router\Router;
 use iutnc\tucapp\model\Photos;
 use iutnc\mf\utils\HttpRequest;
-use iutnc\mf\view\AbstractView;
 use iutnc\tucapp\model\Galeries;
 use iutnc\tucapp\view\AjouterPhotoView;
 use iutnc\mf\control\AbstractController;
@@ -27,14 +26,10 @@ class AjouterPhotoController extends AbstractController
       
       $idGalerie = $httpRequest->get['id'];
       if ($httpRequest->method === 'GET') {
-        $ajouterPhoto = new AjouterPhotoView($idGalerie); // récupère l'id de la galerie quand on clique sur une photo
-        
-        AbstractView::setAppTitle("Ajouter Photo");
-        AbstractView::addStyleSheet('html/css/style.css');
-        $ajouterPhoto->setAppTitle('Ajouter photo');
-        $ajouterPhoto->makePage();
-
-
+        $renderAjouterPhoto = new AjouterPhotoView($idGalerie); // récupère l'id de la galerie quand on clique sur une photo
+        $renderAjouterPhoto->setAppTitle('Ajouter photo');
+        $renderAjouterPhoto::addStyleSheet('html/css/style.css');
+        $renderAjouterPhoto->makePage();
 
       } elseif ($httpRequest->method === 'POST'AND isset($_POST['titre']) AND isset($_FILES["photo"]["name"])) {
           $galerie = Galeries::select()->where("id", "=", $idGalerie)->first();
@@ -75,7 +70,6 @@ class AjouterPhotoController extends AbstractController
     }else{
         echo "<script>alert(\"Vous n'avez le droit d'ajouter des images dans cette galerie\")</script>";
         Router::executeRoute('accueil');
-      }
     }
   }
 }
