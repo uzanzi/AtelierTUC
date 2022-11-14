@@ -63,7 +63,7 @@ class GalerieView extends TucView
     
       $html .= "
       <article class=\"article\">
-      <a class=\"contenu_tweet\" href=\"index.php?action=afficher_photo&id=$photo->id\">";
+      <a class=\"contenu_tweet\" href=\"index.php?action=afficher_photo&idPhoto=$photo->id&idGalerie=$galerie->id\">";
             
             if($photo->format == "api"){
               $html.="<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur/\" alt=\"$photo->titre\">";
