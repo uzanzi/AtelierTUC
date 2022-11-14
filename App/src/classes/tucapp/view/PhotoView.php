@@ -7,11 +7,17 @@ class PhotoView extends TucView
 
   public function render(): string {
     $data = $this->data;
-    return <<<EOT
+    $html = <<<EOT
     <div class="afficher_photo">
       <section id="photo">
         <a href="javascript:history.back()" class="material-symbols-outlined">arrow_back</a>
-        <img src="https://picsum.photos/id/$data->id/2000/2000" alt="photo" class="afficherPhoto">
+    EOT;
+        if($data->format == "api"){
+          $html.="<img src=\"https://picsum.photos/id/$data->id/$data->largeur/$data->hauteur/\" alt=\"$data->titre\">";
+        }else{
+          $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/$data->id.$data->format\" alt=\"$data->titre\">";
+        }
+    $html.= <<<EOT
       </section>
       <section id="data-photo">
         <h2>$data->titre</h2>
@@ -22,6 +28,8 @@ class PhotoView extends TucView
       </section>
      </div>
     EOT;
+
+    return $html;
   }
 
   protected function makeBody(): string
