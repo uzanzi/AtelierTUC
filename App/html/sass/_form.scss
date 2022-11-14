@@ -1,0 +1,36 @@
+form{
+  max-width: 600px;
+  
+  padding: 1rem;
+  padding-top: 5rem;
+  margin: auto;
+
+  input{
+    &:not(input[type="radio"]){
+      width: 100%;
+    }
+    box-sizing: border-box;
+
+    margin-bottom: 2rem;
+    padding: 1rem 1.5rem;
+
+    border: solid 1px #dadce0;
+    border-radius: 1.5rem;
+    
+    line-height: 1rem;
+    
+  }
+  
+  input[type="submit"]{
+    cursor: pointer;
+    background-color: lighten(#dadce0, 8);
+  }
+  input[type="submit"]:hover{
+    background-color: gainsboro;
+  }
+  p{
+    box-sizing: border-box;
+
+    margin-bottom: 2rem;
+  }
+}

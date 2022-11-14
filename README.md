@@ -11,4 +11,3 @@ Installation de l'application :
 
     1) Dossier bdd Ajouter la base de donnée dans votre phpmyadmin
     2) Dossier conf -> Modifier le fichier config.ini (mettre ça base de donnée)
-

@@ -1,0 +1,14 @@
+{ "name": "iutnc/tuc-app",
+  "type": "project",
+  
+  "autoload": {
+      "psr-4": {
+          "iutnc\\" : "./src/classes"
+      }
+  },
+  
+  "require": {
+      "illuminate/database": "*",
+      "phpunit/phpunit": "*"
+  }
+}

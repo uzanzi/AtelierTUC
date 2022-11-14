@@ -1,0 +1,63 @@
+.galerie{
+
+  padding: 1rem;
+  padding-top: 5rem;
+  header{
+    
+    &.topGalerie{
+      h2{
+        display: grid;
+        grid-template-columns: 2rem auto 2rem 2rem 2rem;
+        gap: 1rem;
+      }
+    }
+
+    p{
+      padding: 1rem 0 2rem;
+      font-size: 1rem;
+      line-height: 2rem;
+      font-weight: 500;
+    }
+
+  }
+
+
+  .photos{
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    
+    article{
+      height: 210px;
+      flex-grow: 1;
+      min-width: 12rem;
+    }
+  }
+
+}
+
+.ajouter_galerie{
+  h1{
+
+      display: block;
+      font-size: 1.5em;
+      margin-block-start: 0.83em;
+      margin-block-end: 0.83em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+  }
+  form{
+      fieldset{
+          display: flex;
+          justify-content: center;
+          border-radius: 1.5rem;
+          margin-bottom: 2rem;
+          border: solid 1px #dadce0 ;
+      }
+
+      .creation_galerie_radio{
+          margin-top: 0.5rem;
+      }
+  }
+}

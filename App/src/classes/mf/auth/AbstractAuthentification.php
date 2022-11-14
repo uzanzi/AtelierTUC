@@ -1,0 +1,132 @@
+<?php
+
+namespace iutnc\mf\auth;
+use Exception;
+use \iutnc\mf\exceptions as E;
+
+abstract class AbstractAuthentification {
+
+    /* une constante pour le niveau le plus bas */
+    const ACCESS_LEVEL_NONE = -9999;
+
+    /* la taill minimum des mot de pass */
+    const MIN_PASSWORD_LENGTH = 6;
+      
+    protected static function loadProfile(int $id): void{
+        /* 
+         * La méthode loadProfile : 
+         *
+         * Méthode pour enregistrer le profile de utilisateur en session 
+         *
+         * ATTENTION : cette méthode est appelée uniquement quand la connexion 
+         *             réussie par la méthode login (cf. plus bas)
+         *
+         * Paramètre :
+         *    $id : id de l'utilisateur
+         *    $level : son niveau d'accès
+         * 
+         */
+
+        $_SESSION['user_profile']['id'] = $id;
+    }
+        
+     
+    
+    public static function logout():void {
+
+        /* 
+         * la méthode logout :
+         * 
+         * Méthode pour effectuer la déconnexion, (effacement du 
+         * profile de la session) 
+         *
+         */
+       
+        unset($_SESSION['user_profile']);
+    }
+
+
+    public static function connectedUser(): ?int  {
+
+        /* 
+         * la méthode connectedUser :
+         * 
+         * Méthode pour rtourner l'ID de l'utilisateur connecté
+         *
+         */
+        
+        if ( isset($_SESSION['user_profile']['id'] ))
+            return $_SESSION['user_profile']['id'];
+        return null;
+    }
+
+
+    protected static function makePassword(string $password): string{
+        
+        /* 
+         * La méthode makePassword:
+         * 
+         * Méthode qui vérifie que le $password respecte la politque
+         * de mots de pass. (une taille minimal au moins) 
+         *
+         * Paramètres : 
+         * 
+         *   $password : le mot de passe choisi par l'utilisateur
+         *
+         * Retourne : 
+         *   le haché du mot de passe (a stoquer en BD)
+         *
+         * Algorithme :
+         *    
+         *   Si le mot de passe ne corespond pas la politiqe 
+         *       Soulever une exception
+         *   sinon le hacher et retourner son empreinte
+         */
+
+      if (strlen($password) < self::MIN_PASSWORD_LENGTH) {
+        throw new Exception("Mot de passe trop court", 1);
+      } else {
+        return password_hash($password, PASSWORD_DEFAULT, ['cost' => 12 ]);
+      }
+      
+         
+        
+        
+    }
+
+    
+    protected static function checkPassword(string $given_pass,
+                                            string $db_hash,
+                                            int $id):void{
+
+
+        /* 
+         * La méthode login:
+         * 
+         * Méthode qui réalise la connexion d'un utilisateur.
+         *
+         * Paramètres : 
+         * 
+         *   $given_pass : le mot de passe fourni par l'utilisateur 
+         *   $db_hash : le haché du mot de passe stocké en BD
+         *   $id : l'identifiant de l'utilisateur
+         *   $level : son niveau d'accès
+         * 
+         * Algorithme :
+         *    
+         *   Si le mot de passe ne corespond pas au haché 
+         *       Soulever une exception
+         *   Sinon
+         *       charger le profile 
+         */
+
+         if (!password_verify($given_pass, $db_hash)) {
+          throw new Exception("Identifiant ou mot de passe incorrect", 1);
+         }
+         
+        self::loadProfile($id);
+        
+    }
+
+    
+}
