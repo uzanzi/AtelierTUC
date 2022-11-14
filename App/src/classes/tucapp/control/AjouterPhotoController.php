@@ -69,7 +69,7 @@ class AjouterPhotoController extends AbstractController
       }
     }else{
         echo "<script>alert(\"Vous n'avez le droit d'ajouter des images dans cette galerie\")</script>";
-        Router::executeRoute('accueil');
+        Router::executeRoute('galerie');
     }
   }
 }

@@ -35,12 +35,14 @@ class AjouterGalerieController extends AbstractController
 
 
       $requeteHttp = new HttpRequest;
-      if ($requeteHttp->method == 'GET') {
+      if ($requeteHttp->method == 'GET' || isset($_SESSION['messageAjouterGalerie'])) {
 
         AbstractView::setAppTitle("Création Galerie");
         AbstractView::addStyleSheet('html/css/style.css');
         $render = new CreationGalerieView;
         $render->makePage();
+        unset($_SESSION['messageAjouterGalerie']);
+
       } elseif ($requeteHttp->method == 'POST' and !empty($requeteHttp->post['Titre'])and !empty($requeteHttp->post['Description'])) {
 
 
@@ -55,12 +57,10 @@ class AjouterGalerieController extends AbstractController
           DB::table('utilisateurs_galeries')->insert(['id_utilisateur' => "$idUtilisateur", 'id_galerie' => "$galerie->id", 'niveauAcces' => "100"]);
           Router::executeRoute('default');
         
-        }else {
-          echo "<script>alert(\"Vous n'avez pas remplit tout les champs\")</script>";
-          Router::executeRoute('default');
-      }
+        }
     }else {
-      Router::executeRoute('default');
+      echo "<script>alert(\"Vous ne pouvez pas ajouter de galerie en étant déconnecté\")</script>";
+      Router::executeRoute('accueil');
     }
   }
 }
