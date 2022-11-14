@@ -34,6 +34,7 @@ $router->addRoute('ajout_mot_clef_sur_photo', 'ajouter_mot_clef_sur_photo', '\iu
 $router->addRoute('suppression_mot_clef_sur_photo', 'supprimer_mot_clef_sur_photo', '\iutnc\tucapp\control\SupprimerMotClefSurPhotoController');
 $router->addRoute('ajout_mot_clef_sur_galerie', 'ajouter_mot_clef_sur_galerie', '\iutnc\tucapp\control\AjouterMotClefSurGalerieController');
 $router->addRoute('suppression_mot_clef_sur_galerie', 'supprimer_mot_clef_sur_galerie', '\iutnc\tucapp\control\SupprimerMotClefSurGalerieController');
+$router->addRoute('ajout_utilisateur_partage', 'ajouter_utilisateur_partage', '\iutnc\tucapp\control\AjouterUtilisateurPartage');
 
 $router->setDefaultRoute('presenter_galeries');
 

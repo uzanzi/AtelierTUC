@@ -78,4 +78,3 @@ class AjouterPhotoController extends AbstractController
       }
     }
   }
-}
