@@ -38,6 +38,9 @@ class AjouterUtilisateurPartage extends AbstractController
               if(isset($utilisateur_mail->id)){
                   DB::table('utilisateurs_galeries')->insert(['id_utilisateur' => "$utilisateur_mail->id", 'id_galerie' => "$idGalerie", 'niveauAcces' => "10"]);
                   Router::executeRoute('galerie');
+              }else {
+                echo "<script>alert(\"Ce mail n'existe pas\")</script>";
+                Router::executeRoute('galerie');
               }
       
             

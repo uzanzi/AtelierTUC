@@ -72,3 +72,4 @@ class AjouterPhotoController extends AbstractController
         Router::executeRoute('accueil');
     }
   }
+}
