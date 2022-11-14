@@ -25,27 +25,19 @@ class AccueilView extends TucView
     $galeriesPartagees=$this->data['galeriesPartagees'];
 
     $html.= "
-
-    <section id=\"ajouter_galeries\">
-      <header>
-        <h2><a href=\"/AtelierTUC/App/?action=ajouter_galerie\">Ajouter une galeries<span class=\"material-symbols-outlined\">chevron_right</span></a></h2>
-      </header>
-      <main>
-      <article>
-        <a class=\"material-symbols-outlined\" href=\"/AtelierTUC/App/?action=ajouter_galerie\">
-            <img src=\"image_app/plus.png\" alt=\"ajouter une galerie\">
-        </a>
-      </article>
-      </main>
-    </section>";
-
-    $html.= "
     <div class=\"presenter_galeries\">
       <section id=\"galeriesPrivees\">
         <header>
           <h2><a href=\"$urlGaleriesPrivees\">Vos galeries<span class=\"material-symbols-outlined\">chevron_right</span></a></h2>
         </header>
         <main>
+        <article class=\"add_photo\">
+          <a href=\"/AtelierTUC/App/?action=ajouter_galerie\">
+            <span class=\"material-symbols-outlined\">
+              add
+            </span>
+          </a>
+        </article>
         ";
 
           foreach ($galeriesPrivees as $galerie){
@@ -59,9 +51,13 @@ class AccueilView extends TucView
                 <a class=\"nouvelle_image\" href=\"$urlGalerie\">";
 
                 if (isset($photo->id)) {
-                  $html.="<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur\" alt=\"$galerie->nom\">";
+                  if($photo->format == "api"){
+                    $html.="<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur/\" alt=\"$galerie->nom\">";
+                  }else{
+                    $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.$photo->format\" alt=\"$galerie->nom\">";
+                  }
                 } else {
-                  $html.="<img src=\"https://picsum.photos/id/1000/200/200\" alt=\"$galerie->nom\">";
+                  $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/no-photo.png\" alt=\"$galerie->nom\">";
                 }
                   $html.="<h3>{$galerie->nom}</h3>
                 </a>
@@ -89,9 +85,13 @@ class AccueilView extends TucView
                 <a class=\"contenu_tweet\" href=\"$urlGalerie\">";
 
                 if (isset($photo->id)) {
-                  $html.="<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur\" alt=\"$galerie->nom\">";
+                  if($photo->format == "api"){
+                    $html.="<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur/\" alt=\"$galerie->nom\">";
+                  }else{
+                    $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.$photo->format\" alt=\"$galerie->nom\">";
+                  }
                 } else {
-                  $html.="<img src=\"https://picsum.photos/id/1000/200/200\" alt=\"$galerie->nom\">";
+                  $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/no-photo.png\" alt=\"$galerie->nom\">";
                 }
                   $html.="<h3>{$galerie->nom}</h3>
                 </a>
@@ -121,9 +121,13 @@ class AccueilView extends TucView
             <a class=\"contenu_tweet\" href=\"$urlGalerie\">";
 
             if (isset($photo->id)) {
-              $html.="<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur\" alt=\"$galerie->nom\">";
+              if($photo->format == "api"){
+                $html.="<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur/\" alt=\"$galerie->nom\">";
+              }else{
+                $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.$photo->format\" alt=\"$galerie->nom\">";
+              }
             } else {
-              $html.="<img src=\"https://picsum.photos/id/1000/200/200\" alt=\"$galerie->nom\">";
+              $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/no-photo.png\" alt=\"$galerie->nom\">";
             }
               $html.="<h3>{$galerie->nom}</h3>
             </a>

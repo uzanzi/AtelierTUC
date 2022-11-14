@@ -31,32 +31,36 @@ class AjouterGalerieController extends AbstractController
     //   Router::executeRoute('default');
 
 
+    if (TucAuthentification::connectedUser()) {
 
 
-    $requeteHttp = new HttpRequest;
-    if ($requeteHttp->method == 'GET') {
+      $requeteHttp = new HttpRequest;
+      if ($requeteHttp->method == 'GET') {
 
-      AbstractView::setAppTitle("Création Galerie");
-      AbstractView::addStyleSheet('html/css/style.css');
-      $render = new CreationGalerieView;
-      $render->makePage();
-    } elseif ($requeteHttp->method == 'POST' and !empty($requeteHttp->post['Titre'])and !empty($requeteHttp->post['Description']) and !empty($requeteHttp->post['Acces'])) {
+        AbstractView::setAppTitle("Création Galerie");
+        AbstractView::addStyleSheet('html/css/style.css');
+        $render = new CreationGalerieView;
+        $render->makePage();
+      } elseif ($requeteHttp->method == 'POST' and !empty($requeteHttp->post['Titre'])and !empty($requeteHttp->post['Description'])) {
 
 
-        $galerie = new Galeries();
-        $galerie->nom = $requeteHttp->post['Titre'];
-        $galerie->description = $requeteHttp->post['Description'];
-        $galerie->acces = $requeteHttp->post['Acces'];
-        $galerie->save();
+          $galerie = new Galeries();
+          $galerie->nom = $requeteHttp->post['Titre'];
+          $galerie->description = $requeteHttp->post['Description'];
+          $galerie->acces = $requeteHttp->post['Acces'];
+          $galerie->save();
 
-        $idUtilisateur = TucAuthentification::connectedUser();
-        $galerie = Galeries::select()->orderBy("id", "desc")->first();
-        DB::table('utilisateurs_galeries')->insert(['id_utilisateur' => "$idUtilisateur", 'id_galerie' => "$galerie->id", 'niveauAcces' => "100"]);
-        Router::executeRoute('default');
-      
-      }else {
-        echo "<script>alert(\"Vous n'avez pas remplit tout les champs\")</script>";
-        Router::executeRoute('default');
+          $idUtilisateur = TucAuthentification::connectedUser();
+          $galerie = Galeries::select()->orderBy("id", "desc")->first();
+          DB::table('utilisateurs_galeries')->insert(['id_utilisateur' => "$idUtilisateur", 'id_galerie' => "$galerie->id", 'niveauAcces' => "100"]);
+          Router::executeRoute('default');
+        
+        }else {
+          echo "<script>alert(\"Vous n'avez pas remplit tout les champs\")</script>";
+          Router::executeRoute('default');
+      }
+    }else {
+      Router::executeRoute('default');
     }
   }
 }
