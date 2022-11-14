@@ -61,7 +61,7 @@ class SupprimerUtilisateurPartageController extends AbstractController
 
                             DB::table('utilisateurs_galeries')->where('id_galerie', $idGalerie)->where('id_utilisateur', $idUtilisateur)->delete();
 
-                            Router::executeRoute('accueil');
+                            Router::executeRoute('galerie');
                         } catch (\Throwable $th) {
                             echo ($th->getMessage());
                         }

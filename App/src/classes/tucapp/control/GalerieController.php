@@ -34,15 +34,35 @@ class GalerieController extends AbstractController
   
       $galerie_utilisateur = $galerie->utilisateurs()->first();
 
-      $acces_utilisateur = $galerie->utilisateurs()->where('id_utilisateur', '=', TucAuthentification::connectedUser())->first();
+      $acces_utilisateur = 0;
+
+      $requete_acces_utilisateur = $galerie->utilisateurs()->where('id_utilisateur', '=', TucAuthentification::connectedUser())->first();
+
+      if (isset($requete_acces_utilisateur->id)) {
+
+        $acces_utilisateur = 10;
+
+      }
+
+      $requete_acces_utilisateur = $galerie->utilisateurs()->where('id_utilisateur', '=', TucAuthentification::connectedUser())->where('niveauAcces', '=', 100)->first();
+
+      if (isset($requete_acces_utilisateur->id)) {
+
+        $acces_utilisateur = 100;
+
+      }
   
       $acces_galerie = $galerie->acces;
+
+
+      $mots_clefs = $galerie->mots_clefs()->get();
+      $partages = $galerie->utilisateurs()->get();
   
-      if($acces_galerie  == 1 || isset($acces_utilisateur->id)){
+      if($acces_galerie  == 1 || $acces_utilisateur>=10){
         AbstractView::setAppTitle("$galerie->nom");
         AbstractView::addStyleSheet('html/css/style.css');
     
-        $render = new GalerieView([$galerie, $photos, $galerie_utilisateur]);
+        $render = new GalerieView([$galerie, $photos, $galerie_utilisateur, $acces_utilisateur, $mots_clefs, $partages]);
         $render->makePage();
       }else{
         echo "<script>alert(\"Vous n'avez pas accès à cette galerie\")</script>";

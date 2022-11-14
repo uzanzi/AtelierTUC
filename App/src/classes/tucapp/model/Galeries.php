@@ -18,7 +18,7 @@ class Galeries extends \Illuminate\Database\Eloquent\Model
 
   public function utilisateurs(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
   {
-    return $this->belongsToMany('\iutnc\tucapp\model\Galeries', 'utilisateurs_galeries', 'id_galerie','id_utilisateur');
+    return $this->belongsToMany('\iutnc\tucapp\model\Utilisateurs', 'utilisateurs_galeries', 'id_galerie','id_utilisateur');
   }
 
   public function photos(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

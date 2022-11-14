@@ -17,6 +17,9 @@ class GalerieView extends TucView
     $galerie = $this->data[0];
     $photos = $this->data[1];
     $galerie_utilisateur = $this->data[2];
+    $acces = $this->data[3];
+    $mots_clefs = $this->data[4];
+    $partages = $this->data[5];
 
     $requeteHttp = new HttpRequest();
 
@@ -68,8 +71,41 @@ class GalerieView extends TucView
       }
     }
     $html .= "</h2>
-    <p> Description : $galerie->description </p>
-    </header>";
+    <p> Description : $galerie->description </p>";
+
+    if ($acces == 100) {
+      $html.= "<ul class=\"listeMotsClefs\">
+        <li><a href=\"?action=ajouter_mot_clef&id={$requeteHttp->get['id']}\" class=\"material-symbols-outlined\">add</a></li>";
+    
+        foreach ($mots_clefs as $mot_clef){
+          $html.= "<li><a href=\"?action=supprimer_mot_clef&motClef={$mot_clef->mot_clef}&id={$requeteHttp->get['id']}\">$mot_clef->mot_clef<span class=\"material-symbols-outlined\">delete</span></a></li>";
+        }
+    } else {
+      $html.= "<ul class=\"listeMotsClefs\">";
+    
+        foreach ($mots_clefs as $mot_clef){
+          $html.= "<li>$mot_clef->mot_clef</li>";
+        }
+    }
+
+    $html.="</ul>";
+
+    if ($acces == 100) {
+      $html.= "<ul class=\"listePartages\">
+        <li><a href=\"?action=ajouter_utilisateur_partage&id={$requeteHttp->get['id']}\" class=\"material-symbols-outlined\">add</a></li>";
+    
+        foreach ($partages as $partage){
+          $html.= "<li><a href=\"?action=supprimer_utilisateur_partage&idUtilisateur={$partage->id}&id={$requeteHttp->get['id']}\">$partage->prenom $partage->nom<span class=\"material-symbols-outlined\">delete</span></a></li>";
+        }
+    } else {
+      $html.= "<ul class=\"listePartages\">";
+    
+        foreach ($partages as $partage){
+          $html.= "<li>$partage->prenom $partage->nom</li>";
+        }
+    }
+
+    $html.="</ul></header>";
 
     $html .= "<div class='photos'>";;
     foreach ($photos as $photo) {
