@@ -85,9 +85,13 @@ class ListeGaleriesView extends TucView {
       <article>
         <a class=\"contenu_tweet\" href=\"$urlGalerie\">";
         if (isset($photo->id)) {
-          $html.="<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur\" alt=\"$galerie->nom\">";
+          if($photo->format == "api"){
+            $html.="<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur/\" alt=\"$galerie->nom\">";
+          }else{
+            $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.$photo->format\" alt=\"$galerie->nom\">";
+          }
         } else {
-          $html.="<img src=\"https://picsum.photos/id/1000/200/200\" alt=\"$galerie->nom\">";
+          $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/no-photo.png\" alt=\"$galerie->nom\">";
         }
         
           $html.="<h3>{$galerie->nom}</h3>

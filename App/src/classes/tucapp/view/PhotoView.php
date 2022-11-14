@@ -2,19 +2,38 @@
 
 namespace iutnc\tucapp\view;
 
+use iutnc\mf\router\Router;
+use iutnc\mf\utils\HttpRequest;
+
 class PhotoView extends TucView
 {
 
   public function render(): string {
     $data = $this->data;
-    return <<<EOT
+    $router = new Router;
+    $requete=new HttpRequest;
+    $html = <<<EOT
     <div class="afficher_photo">
       <section id="photo">
         <a href="javascript:history.back()" class="material-symbols-outlined">arrow_back</a>
-        <img src="https://picsum.photos/id/$data->id/2000/2000" alt="photo" class="afficherPhoto">
+    EOT;
+        if($data->format == "api"){
+          $html.="<img src=\"https://picsum.photos/id/$data->id/$data->largeur/$data->hauteur/\" alt=\"$data->titre\">";
+        }else{
+          $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/$data->id.$data->format\" alt=\"$data->titre\">";
+        }
+
+        $urlPhoto = $router->urlFor('supprimer_photo', ['idPhoto' => $requete->get['id'], 'idGalerie' => $requete->get['idGalerie']]);
+
+    $html.= <<<EOT
       </section>
       <section id="data-photo">
-        <h2>$data->titre</h2>
+        <h2>
+          <span>$data->titre</span>
+          <a href="$urlPhoto" class="material-symbols-outlined">
+            delete
+          </a>
+        </h2>
         <p>Ajoutée le $data->date_ajout</p>
         <p>Format : $data->format</p>
         <p>Hauteur : $data->hauteur</p>
@@ -22,6 +41,8 @@ class PhotoView extends TucView
       </section>
      </div>
     EOT;
+
+    return $html;
   }
 
   protected function makeBody(): string

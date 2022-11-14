@@ -60,17 +60,14 @@
 
     h2{
       padding-top: 0;
+
+      display: flex;
+      justify-content: space-between;
     }
 
     p:not(:last-child){
       margin-bottom: .5rem;
     }
-  }
-}
-.ajouter_photo{
-  form{
-
-
   }
 }
 #file-upload-button{
