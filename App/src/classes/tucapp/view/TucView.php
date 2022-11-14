@@ -30,8 +30,7 @@ class TucView extends AbstractView implements Renderer{
 
     $footer = <<<EOT
       <footer>
-        <p><a href="/a-propos.html">À Propos</a></p>
-        <p><a href="/utilisateurs.html">Comptes utilisateurs</a></p>
+        <p><a href="?action=a_propos">À propos</a></p>
         <p>Application créée par le groupe TUC en LP CIASIE • 2022</p>
       </footer>
     EOT;
