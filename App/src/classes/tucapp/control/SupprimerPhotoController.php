@@ -7,7 +7,7 @@ use iutnc\tucapp\model\Galeries;
 use iutnc\mf\control\AbstractController;
 use iutnc\tucapp\auth\TucAuthentification;
 use iutnc\mf\router\Router;
-use iutnc\tucapp\view\SupprimerPhotoView;
+use iutnc\tucapp\view\SupprimerMotClefView;
 
 
 class SupprimerPhotoController extends AbstractController{
@@ -27,7 +27,7 @@ class SupprimerPhotoController extends AbstractController{
           $idPhoto = $photo->id;
           unset($_POST);
           if ($requeteHttp->method == 'GET'){
-            $render = new SupprimerPhotoView([$idGalerie, $idPhoto]);
+            $render = new SupprimerMotClefView([$idGalerie, $idPhoto]);
             $render::setAppTitle('Supprimer photo');
             $render::addStyleSheet('html/css/style.css');
             $render->makePage();
