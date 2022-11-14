@@ -86,6 +86,9 @@ form input[type=submit] {
   cursor: pointer;
   background-color: #f0f1f3;
 }
+form input[type=submit]:hover {
+  background-color: gainsboro;
+}
 form p {
   box-sizing: border-box;
   margin-bottom: 2rem;
@@ -99,6 +102,12 @@ form p {
   display: flex;
   flex-direction: column-reverse;
 }
+.galerie .topGalerie h3 {
+  padding: 1rem 0 2rem;
+  font-size: 1rem;
+  line-height: 2rem;
+  font-weight: 500;
+}
 .galerie .topGalerie form {
   width: 2rem;
   height: 2rem;
@@ -108,6 +117,7 @@ form p {
   margin: 0;
 }
 .galerie .topGalerie form .boutonSupprimerGalerie {
+  background-color: red;
   background: url(../../image_app/poubelle.png);
   background-repeat: no-repeat;
   background-size: 25px 25px;
@@ -119,6 +129,27 @@ form p {
 .galerie .topGalerie form .boutonSupprimerGalerie:hover {
   background-color: gainsboro;
 }
+.galerie .topGalerie form {
+  width: 2rem;
+  height: 2rem;
+  max-width: 0;
+  padding: 0;
+  padding-top: 0;
+  margin: 0;
+}
+.galerie .topGalerie form .boutonAjouterGalerie {
+  background-color: red;
+  background: url(../../image_app/ajouter.png);
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  width: 2rem;
+  height: 2rem;
+  background-position-x: center;
+  background-position-y: center;
+}
+.galerie .topGalerie form .boutonAjouterGalerie:hover {
+  background-color: gainsboro;
+}
 .galerie .photos {
   display: flex;
   flex-wrap: wrap;
@@ -128,6 +159,25 @@ form p {
   height: 210px;
   flex-grow: 1;
   min-width: 12rem;
+}
+
+.ajouter_galerie h1 {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+.ajouter_galerie form fieldset {
+  display: flex;
+  justify-content: center;
+  border-radius: 1.5rem;
+  margin-bottom: 2rem;
+  border: solid 1px #dadce0;
+}
+.ajouter_galerie form .creation_galerie_radio {
+  margin-top: 0.5rem;
 }
 
 .afficher_photo {
@@ -179,6 +229,10 @@ form p {
   margin-bottom: 0.5rem;
 }
 
+#file-upload-button {
+  background-color: red;
+}
+
 * {
   font-family: "Montserrat", sans-serif;
 }
@@ -188,6 +242,15 @@ form p {
   font-size: 2rem;
   vertical-align: bottom;
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+
+html {
+  height: 100%;
+}
+html body {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
 }
 
 body > header {
@@ -216,6 +279,11 @@ body > header nav {
   font-size: 0;
 }
 
+body > main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 body > main h2 {
   padding: 2.5rem 0 1rem;
   font-size: 1.3rem;
