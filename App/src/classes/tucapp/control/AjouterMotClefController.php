@@ -51,7 +51,7 @@ class AjouterMotClefController extends AbstractController
         {
           
           $motclef = new Mots_Clefs();
-          $motclef->mot_clef = $httpRequest->post['motClef'];
+          $motclef->mot_clef = strtolower($httpRequest->post['motClef']);
           $motclef->save();
 
         }
