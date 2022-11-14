@@ -19,12 +19,12 @@ class PhotoController extends AbstractController
   {
     if (TucAuthentification::connectedUser()) {
       $requeteHttp = new HttpRequest();
-      $idPhoto = $requeteHttp->get['idPhoto'];
       $galerie = Galeries::select()->where('id', '=', $requeteHttp->get['idGalerie'])->first();
       if ($galerie) {
         $acces_utilisateur = $galerie->utilisateurs()->where('id_utilisateur', '=', TucAuthentification::connectedUser())->where('niveauAcces', '=', 100)->first();
         if (TucAuthentification::connectedUser() == isset($acces_utilisateur)) {
-          if (DB::table('galeries_photos')->where('id_galerie', '=', $requeteHttp->get['idGalerie'])->where('id_photo', '=', $requeteHttp->get['idPhoto'])->first()) {
+          $idPhoto = $requeteHttp->get['id'];
+          if (DB::table('galeries_photos')->where('id_galerie', '=', $requeteHttp->get['idGalerie'])->where('id_photo', '=', $idPhoto)->first()) {
             $photo = Photos::select()->where("id", "=", $idPhoto)->first();
             $renderPhotoView = new PhotoView($photo);
             $renderPhotoView::setAppTitle("TUC • " . $photo->titre);
