@@ -23,10 +23,10 @@ class PhotoView extends TucView
           $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/{$data[0]->id}.{$data[0]->format}\" alt=\"{$data[0]->titre}\">";
         }
 
-        $urlPhoto = $router->urlFor('supprimer_photo', ['idPhoto' => $requete->get['id'], 'idGalerie' => $requete->get['idGalerie']]);
+        $urlPhoto = $router->urlFor('supprimer_photo', ['id' => $requete->get['id'], 'idGalerie' => $requete->get['idGalerie']]);
 
     $html.= <<<EOT
-    <div>
+      </section>
       <section id="data-photo">
         <h2>
           <span>{$data[0]->titre}</span>
