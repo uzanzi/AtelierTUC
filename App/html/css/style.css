@@ -100,7 +100,7 @@ form p {
 }
 .galerie header.topGalerie h2 {
   display: grid;
-  grid-template-columns: 2rem auto 2rem 2rem;
+  grid-template-columns: 2rem auto 2rem 2rem 2rem;
   gap: 1rem;
 }
 .galerie header p {
@@ -183,6 +183,8 @@ form p {
 }
 .afficher_photo section#data-photo h2 {
   padding-top: 0;
+  display: flex;
+  justify-content: space-between;
 }
 .afficher_photo section#data-photo p:not(:last-child) {
   margin-bottom: 0.5rem;

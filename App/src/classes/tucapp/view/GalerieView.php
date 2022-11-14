@@ -38,6 +38,7 @@ class GalerieView extends TucView
 
     $urlSupprimerGalerie = $router->urlFor('supprimer_galerie', ['id' => $requeteHttp->get['id']]);
     $urlAjouterGalerie = $router->urlFor('ajouter_photo', ['id' => $requeteHttp->get['id']]);
+    $urlPartageGalerie = $router->urlFor('ajouter_utilisateur_partage', ['id' => $requeteHttp->get['id']]);
     $urlHome = $router->urlFor('accueil');
 
 
@@ -56,7 +57,10 @@ class GalerieView extends TucView
       if (TucAuthentification::connectedUser()  === $galerie_utilisateur->id) {
 
         $html .= "<a href=\"$urlAjouterGalerie\" class=\"material-symbols-outlined retour\">
-          add_circle
+          add_photo_alternate
+        </a>
+        <a href=\"$urlPartageGalerie\" class=\"material-symbols-outlined retour\">
+          person_add
         </a>
         <a href=\"$urlSupprimerGalerie\" class=\"material-symbols-outlined retour\">
           delete
@@ -70,9 +74,11 @@ class GalerieView extends TucView
     $html .= "<div class='photos'>";;
     foreach ($photos as $photo) {
 
+      $urlPhoto = $router->urlFor('afficher_photo', ['id' => $photo->id, 'idGalerie' => $galerie->id]);
+
       $html .= "
       <article class=\"article\">
-        <a class=\"contenu_tweet\" href=\"index.php?action=afficher_photo&id=$photo->id\">";
+        <a class=\"contenu_tweet\" href=\"$urlPhoto\">";
 
       if ($photo->format == "api") {
         $html .= "<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur/\" alt=\"$photo->titre\">";
