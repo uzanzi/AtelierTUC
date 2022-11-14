@@ -4,26 +4,39 @@
 namespace iutnc\tucapp\control;
 
 
-use Illuminate\Database\Capsule\Manager as DB;
-use iutnc\mf\control\AbstractController;
-use iutnc\mf\utils\HttpRequest;
-use iutnc\tucapp\auth\TucAuthentification;
-use iutnc\tucapp\model\Galeries;
+
+use iutnc\mf\router\Router;
 use iutnc\tucapp\model\Photos;
+use iutnc\mf\utils\HttpRequest;
+use iutnc\mf\view\AbstractView;
+use iutnc\tucapp\model\Galeries;
 use iutnc\tucapp\view\AjouterPhotoView;
+use iutnc\mf\control\AbstractController;
+use iutnc\tucapp\auth\TucAuthentification;
+use Illuminate\Database\Capsule\Manager as DB;
 
 class AjouterPhotoController extends AbstractController
 {
   public function execute(): void
   {
-    if (TucAuthentification::connectedUser()) {
-      $httpRequest = new HttpRequest();
+    $httpRequest = new HttpRequest();
+    $galerie = Galeries::select()->where('id', '=', $httpRequest->get['id'])->first();
+    $galerie_utilisateur = $galerie->utilisateurs()->first();
+
+    if (TucAuthentification::connectedUser() AND TucAuthentification::connectedUser() == $galerie_utilisateur->id){
+      
       $idGalerie = $httpRequest->get['id'];
       if ($httpRequest->method === 'GET') {
         $ajouterPhoto = new AjouterPhotoView($idGalerie); // récupère l'id de la galerie quand on clique sur une photo
+        
+        AbstractView::setAppTitle("Ajouter Photo");
+        AbstractView::addStyleSheet('html/css/style.css');
         $ajouterPhoto->setAppTitle('Ajouter photo');
         $ajouterPhoto->makePage();
-      } elseif ($httpRequest->method === 'POST') {
+
+
+
+      } elseif ($httpRequest->method === 'POST'AND isset($_POST['titre']) AND isset($_FILES["photo"]["name"])) {
           $galerie = Galeries::select()->where("id", "=", $idGalerie)->first();
           $erreur = 0;
           if ($galerie){
@@ -48,12 +61,20 @@ class AjouterPhotoController extends AbstractController
                 $photo->largeur = $donneesPhoto[1];
                 $photo->save();
                 DB::table('galeries_photos')->insert(['id_galerie' => "$idGalerie", 'id_photo' => "$idPhoto"]);
+                Router::executeRoute('galerie');
               }
             }
           }
         }else{
             $erreur = $erreur + 1;
           }
+      }else{
+        echo "<script>alert(\"Vous n'avez pas renseigner de nom d'image ou vous n'avez pas ajouté d'image\")</script>";
+        Router::executeRoute('galerie');
+      }
+    }else{
+        echo "<script>alert(\"Vous n'avez le droit d'ajouter des images dans cette galerie\")</script>";
+        Router::executeRoute('accueil');
       }
     }
   }

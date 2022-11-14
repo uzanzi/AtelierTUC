@@ -25,7 +25,9 @@ form{
     cursor: pointer;
     background-color: lighten(#dadce0, 8);
   }
-
+  input[type="submit"]:hover{
+    background-color: gainsboro;
+  }
   p{
     box-sizing: border-box;
 
