@@ -40,7 +40,7 @@ class AjouterGalerieController extends AbstractController
       AbstractView::addStyleSheet('html/css/style.css');
       $render = new CreationGalerieView;
       $render->makePage();
-    } elseif ($requeteHttp->method == 'POST' and !empty($requeteHttp->post['Titre'])and !empty($requeteHttp->post['Description']) and !empty($requeteHttp->post['Acces'])) {
+    } elseif ($requeteHttp->method == 'POST' and !empty($requeteHttp->post['Titre'])and !empty($requeteHttp->post['Description'])) {
 
 
         $galerie = new Galeries();
