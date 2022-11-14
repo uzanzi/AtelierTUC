@@ -92,6 +92,9 @@ body > main{
     
     border-radius: 1.5rem;
 
+    background-color: #353535;
+    color: #fff;
+
     img{
       width: 100%;
       height: 100%;
@@ -103,6 +106,31 @@ body > main{
     }
     &:hover img{
       transform: scale(1.15);
+    }
+
+    &.add_photo{
+      
+      a{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        width: 100%;
+        height: 100%;
+
+        transition: transform .15s ease-out;
+
+        .material-symbols-outlined{
+          font-size: 3rem;
+          width: 100%;
+          color: #fff;
+          text-align: center;
+        }
+
+        &:hover{
+          transform: scale(1.3);
+        }
+      }
     }
   }
 
