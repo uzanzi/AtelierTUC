@@ -79,13 +79,13 @@ class SupprimerGalerieController extends AbstractController{
 
         }else{
           echo "<script>alert(\"Vous n'avez pas les droits pour supprimer cette galerie\")</script>";
-        Router::executeRoute('accueil');
+        Router::executeRoute('galerie');
         }
 
 
     }else{
       echo "<script>alert(\"Vous n'avez pas les droits pour supprimer cette galerie\")</script>";
-      Router::executeRoute('accueil');
+      Router::executeRoute('galerie');
     }
   }          
 }
