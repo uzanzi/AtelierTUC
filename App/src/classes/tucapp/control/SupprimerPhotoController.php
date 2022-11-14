@@ -18,13 +18,13 @@ class SupprimerPhotoController extends AbstractController{
     if (TucAuthentification::connectedUser()){
     $requeteHttp = new HttpRequest;
     $galerie = Galeries::select()->where('id', '=', $requeteHttp->get['idGalerie'])->first();
-    if ($galerie){
+    if (isset($galerie->id)){
       $acces_utilisateur = $galerie->utilisateurs()->where('id_utilisateur', '=', TucAuthentification::connectedUser())->where('niveauAcces', '=', 100)->first();
       if (TucAuthentification::connectedUser() == isset($acces_utilisateur)){
-        $photo = DB::table('galeries_photos')->where('id_galerie', '=', $requeteHttp->get['idGalerie'])->where('id_photo', '=', $requeteHttp->get['idPhoto'])->first();
-        if ($photo){
-          $idGalerie = $galerie->id;
-          $idPhoto = $photo->id;
+        $jointure = DB::table('galeries_photos')->where('id_galerie', '=', $requeteHttp->get['idGalerie'])->where('id_photo', '=', $requeteHttp->get['id'])->first();
+        if (isset($jointure->id_photo)){
+          $idGalerie = $jointure->id_galerie;
+          $idPhoto = $jointure->id_photo;
           unset($_POST);
           if ($requeteHttp->method == 'GET'){
             $render = new SupprimerPhotoView([$idGalerie, $idPhoto]);
@@ -35,17 +35,18 @@ class SupprimerPhotoController extends AbstractController{
           elseif ($requeteHttp->method == 'POST') {
             DB::table('galeries_photos')->where('id_galerie', "=", $idGalerie)->where('id_photo', '=', $idPhoto)->delete();
             if (count(DB::table('galeries_photos')->where('id_photo', '=', $idPhoto)->get()) === 0){
-              DB::table('photos')->where('id',$requeteHttp->get['idPhoto'])->delete();
+              DB::table('photos')->where('id',$requeteHttp->get['id'])->delete();
             }
-            Router::executeRoute('afficher_galerie');
+            $_GET['id']=$requeteHttp->get['idGalerie'];
+            Router::executeRoute('galerie');
           }
         }else{
           echo "<script>alert(\"Un problème est survenue : la photo que vous voulez supprimer n'existe pas dans la galerie.\")</script>";
-          Router::executeRoute('accueil');
+          Router::executeRoute('photo');
         }
       }else{
-        echo "<script>alert(\"Un problème est survenue : vous n'avez pas les droits pour supprimer cette galerie\")</script>";
-        Router::executeRoute('accueil');
+        echo "<script>alert(\"Un problème est survenue : vous n'avez pas les droits pour supprimer une photo de cette galerie\")</script>";
+        Router::executeRoute('photo');
       }
     }else{
       echo "<script>alert(\"Un problème est survenue : la galerie n'existe pas.\")</script>";
