@@ -4,6 +4,7 @@
 namespace iutnc\tucapp\control;
 
 
+
 use iutnc\mf\router\Router;
 use iutnc\tucapp\model\Photos;
 use iutnc\mf\utils\HttpRequest;
@@ -53,7 +54,6 @@ class AjouterPhotoController extends AbstractController
             } else {
               $donneesPhoto = getimagesize($_FILES['photo']['tmp_name'][$i]);
               if (move_uploaded_file($_FILES["photo"]["tmp_name"][$i], $chemin)) {
-
                 $photo = new Photos();
                 $photo->titre = $httpRequest->post['titre'];
                 $photo->format = $extension;
@@ -75,6 +75,7 @@ class AjouterPhotoController extends AbstractController
     }else{
         echo "<script>alert(\"Vous n'avez le droit d'ajouter des images dans cette galerie\")</script>";
         Router::executeRoute('accueil');
+      }
     }
   }
 }
