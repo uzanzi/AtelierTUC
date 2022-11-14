@@ -56,73 +56,70 @@ class GalerieView extends TucView
       </form>";
       }
     }
-
-      $html .=" 
-      </div>
-    ";
-    $html .= "<div class='photos'>
-    <article class=\"article\">
-    <a class=\"contenu_tweet\" href=\"index.php?action=afficher_photo&id=5402\">"
+    $html .= "</div>";
+    $html .= "<div class='photos'>";
     ;
     foreach($photos as $photo){
     
       $html .= "
       <article class=\"article\">
       <a class=\"contenu_tweet\" href=\"index.php?action=afficher_photo&id=$photo->id\">";
-        
-            $image_jpg = "http://univ.tedbest.fr/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.jpg";
-            $image_png = "http://univ.tedbest.fr/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.png";
-            $image_jpeg = "http://univ.tedbest.fr/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.jpeg";
-            $image_gif = "http://univ.tedbest.fr/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.gif";
-
-            $test_image_jpg  = @get_headers($image_jpg );
-            if($test_image_jpg[0] == 'HTTP/1.1 404 Not Found') {
-                $exists_jpg = false;
+            
+            if($photo->format == "api"){
+              $html.="<img src=\"https://picsum.photos/id/$photo->id/$photo->largeur/$photo->hauteur/\" alt=\"$photo->titre\">";
+            }else{
+              $image_jpg = "http://univ.tedbest.fr/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.jpg";
+              $image_png = "http://univ.tedbest.fr/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.png";
+              $image_jpeg = "http://univ.tedbest.fr/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.jpeg";
+              $image_gif = "http://univ.tedbest.fr/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.gif";
+  
+              $test_image_jpg  = @get_headers($image_jpg );
+              if($test_image_jpg[0] == 'HTTP/1.1 404 Not Found') {
+                  $exists_jpg = false;
+              }
+              else {
+                  $exists_jpg = true;
+              }
+  
+              $test_image_png = @get_headers($image_png);
+              if($test_image_png[0] == 'HTTP/1.1 404 Not Found') {
+                  $exists_png = false;
+              }
+              else {
+                  $exists_png = true;
+              }
+  
+              $test_image_jpeg = @get_headers($image_jpeg);
+              if($test_image_jpeg[0] == 'HTTP/1.1 404 Not Found') {
+                  $exists_jpeg = false;
+              }
+              else {
+                  $exists_jpeg = true;
+              }
+  
+              $test_image_gif = @get_headers($image_gif);
+              if($test_image_gif[0] == 'HTTP/1.1 404 Not Found') {
+                  $exists_gif = false;
+              }
+              else {
+                  $exists_gif = true;
+              }
+              if (isset($photo->id) AND $exists_jpg == true) {
+                $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.jpg\" alt=\"$photo->titre\">";
+  
+              }elseif(isset($photo->id) AND $exists_png == true){
+                $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.png\" alt=\"$photo->titre\">";
+  
+              }elseif(isset($photo->id) AND $exists_jpeg == true){
+                $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.jpeg\" alt=\"$photo->titre\">";
+  
+              }elseif(isset($photo->id) AND $exists_gif == true){
+                $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.gif\" alt=\"$photo->titre\">";
+  
+              }
             }
-            else {
-                $exists_jpg = true;
-            }
-
-            $test_image_png = @get_headers($image_png);
-            if($test_image_png[0] == 'HTTP/1.1 404 Not Found') {
-                $exists_png = false;
-            }
-            else {
-                $exists_png = true;
-            }
-
-            $test_image_jpeg = @get_headers($image_jpeg);
-            if($test_image_jpeg[0] == 'HTTP/1.1 404 Not Found') {
-                $exists_jpeg = false;
-            }
-            else {
-                $exists_jpeg = true;
-            }
-
-            $test_image_gif = @get_headers($image_gif);
-            if($test_image_gif[0] == 'HTTP/1.1 404 Not Found') {
-                $exists_gif = false;
-            }
-            else {
-                $exists_gif = true;
-            }
-            if (isset($photo->id) AND $exists_jpg == true) {
-              $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.jpg\" alt=\"$photo->titre\">";
-
-            }elseif(isset($photo->id) AND $exists_png == true){
-              $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.png\" alt=\"$photo->titre\">";
-
-            }elseif(isset($photo->id) AND $exists_jpeg == true){
-              $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.jpeg\" alt=\"$photo->titre\">";
-
-            }elseif(isset($photo->id) AND $exists_gif == true){
-              $html.="<img src=\"/AtelierTUC/App/src/classes/tucapp/photo/$photo->id.gif\" alt=\"$photo->titre\">";
-
-            }else {
-              $html.="<img src=\"https://picsum.photos/id/$photo->id/200/200\" alt=\"$photo->titre\">";
-            }
-              $html.="
-            </a>
+            $html.="
+        </a>
         </article>
       
     ";

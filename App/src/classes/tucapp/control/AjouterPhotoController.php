@@ -35,7 +35,7 @@ class AjouterPhotoController extends AbstractController
 
 
 
-      } elseif ($httpRequest->method === 'POST'AND isset($_POST['titre']) AND isset($_POST['photo'])) {
+      } elseif ($httpRequest->method === 'POST'AND isset($_POST['titre']) AND isset($_FILES["photo"]["name"])) {
           $galerie = Galeries::select()->where("id", "=", $idGalerie)->first();
           $erreur = 0;
           if ($galerie){
