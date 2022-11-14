@@ -40,8 +40,6 @@ class SupprimerGalerieController extends AbstractController{
           $galerie = Galeries::select()->where('id', '=', $requeteHttp->get['id'])->first();
           $nom = $galerie->nom;
           
-          unset($_POST);
-          
           if ($requeteHttp->method == 'GET'){
 
             AbstractView::setAppTitle("Supprimer Galerie");

@@ -98,57 +98,16 @@ form p {
   padding: 1rem;
   padding-top: 5rem;
 }
-.galerie .topGalerie {
-  display: flex;
-  flex-direction: column-reverse;
+.galerie header.topGalerie h2 {
+  display: grid;
+  grid-template-columns: 2rem auto 2rem 2rem;
+  gap: 1rem;
 }
-.galerie .topGalerie h3 {
+.galerie header p {
   padding: 1rem 0 2rem;
   font-size: 1rem;
   line-height: 2rem;
   font-weight: 500;
-}
-.galerie .topGalerie form {
-  width: 2rem;
-  height: 2rem;
-  max-width: 0;
-  padding: 0;
-  padding-top: 0;
-  margin: 0;
-}
-.galerie .topGalerie form .boutonSupprimerGalerie {
-  background-color: red;
-  background: url(../../image_app/poubelle.png);
-  background-repeat: no-repeat;
-  background-size: 25px 25px;
-  width: 2rem;
-  height: 2rem;
-  background-position-x: center;
-  background-position-y: center;
-}
-.galerie .topGalerie form .boutonSupprimerGalerie:hover {
-  background-color: gainsboro;
-}
-.galerie .topGalerie form {
-  width: 2rem;
-  height: 2rem;
-  max-width: 0;
-  padding: 0;
-  padding-top: 0;
-  margin: 0;
-}
-.galerie .topGalerie form .boutonAjouterGalerie {
-  background-color: red;
-  background: url(../../image_app/ajouter.png);
-  background-repeat: no-repeat;
-  background-size: 25px 25px;
-  width: 2rem;
-  height: 2rem;
-  background-position-x: center;
-  background-position-y: center;
-}
-.galerie .topGalerie form .boutonAjouterGalerie:hover {
-  background-color: gainsboro;
 }
 .galerie .photos {
   display: flex;
