@@ -12,10 +12,11 @@ class PhotoView extends TucView
     $data = $this->data;
     $router = new Router;
     $requete=new HttpRequest;
+    $urlGalerie = $router->urlFor('afficher_galerie', ['id' => $requete->get['idGalerie']]);
     $html = <<<EOT
     <div class="afficher_photo">
       <section id="photo">
-        <a href="javascript:history.back()" class="material-symbols-outlined">arrow_back</a>
+        <a href="$urlGalerie" class="material-symbols-outlined">arrow_back</a>
     EOT;
         if($data[0]->format == "api"){
           $html.="<img src=\"https://picsum.photos/id/{$data[0]->id}/{$data[0]->largeur}/{$data[0]->hauteur}/\" alt=\"{$data[0]->titre}\">";

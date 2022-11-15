@@ -11,7 +11,7 @@ class SupprimerPhotoView extends TucView{
     return "
     <div class='supprimerPhoto'>
     <form action='?action=supprimer_photo&idGalerie=$id_Galerie&id=$id_Photo' method='post'>
-    <h2> Voulez-vous vraiment supprimer la photo ?</h2>
+    <h2> Voulez-vous vraiment supprimer la photo&nbsp;?</h2>
     <input type='submit' class='boutonConfirmeSupprimerPhoto' value='Supprimer' name='submitSupprimerPhoto'>
     </form>
     </div>
