@@ -30,9 +30,16 @@ class PhotoView extends TucView
       <section id="data-photo">
         <h2>
           <span>{$data[0]->titre}</span>
-          <a href="$urlPhoto" class="material-symbols-outlined">
-            delete
-          </a>
+EOT;
+
+if ($data[2] == 100) {
+  $html.="
+  <a href=\"$urlPhoto\" class=\"material-symbols-outlined\">
+    delete
+  </a>";
+}
+
+$html.= <<<EOT
         </h2>
         <p>Ajoutée le {$data[0]->date_ajout}</p>
         <p>Format : {$data[0]->format}</p>
