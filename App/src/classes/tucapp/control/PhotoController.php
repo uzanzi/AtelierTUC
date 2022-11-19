@@ -29,13 +29,13 @@ class PhotoController extends AbstractController
 
         $requete_acces_utilisateur = $galerie->utilisateurs()->where('id_utilisateur', '=', TucAuthentification::connectedUser())->where('niveauAcces', '>=', 10)->first();
 
-        if (TucAuthentification::connectedUser() == isset($requete_acces_utilisateur)) {
+        if (isset($requete_acces_utilisateur->id)) {
           $acces_utilisateur = 10;
         }
         
         $requete_acces_utilisateur = $galerie->utilisateurs()->where('id_utilisateur', '=', TucAuthentification::connectedUser())->where('niveauAcces', '=', 100)->first();
 
-        if (TucAuthentification::connectedUser() == isset($requete_acces_utilisateur)) {
+        if (isset($requete_acces_utilisateur->id)) {
           $acces_utilisateur = 100;
         }
 
